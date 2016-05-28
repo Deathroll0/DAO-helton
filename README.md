@@ -42,7 +42,7 @@ _____________________
  _____________________
 
 ##MySQL
-'''
+```
 create database Sistema_Venta;
 use Sistema_Venta;
 
@@ -104,4 +104,4 @@ use mysql;
 create user 'admin_Sis_Venta'@'localhost' identified by '';
 grant all privileges on Sistema_Venta.* to 'admin_Sis_Venta'@'localhost';
 flush privileges;
-'''
+```
