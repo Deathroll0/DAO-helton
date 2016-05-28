@@ -22,17 +22,15 @@ public class clienteDTO {
         this.rut = rut;
     }
 
-    public String getRut() {
-        return rut;
-    }
-
     public clienteDTO(String rut, String nombre, int edad) {
         this.rut = rut;
         this.nombre = nombre;
         this.edad = edad;
     }
     
-    
+    public String getRut() {
+        return rut;
+    }  
 
     public void setRut(String rut) {
         this.rut = rut;
