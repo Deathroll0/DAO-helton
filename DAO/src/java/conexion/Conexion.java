@@ -32,7 +32,7 @@ public class Conexion {
         }
     }
     
-    public static Conexion saberEstado(){
+    public synchronized static Conexion saberEstado(){
         if(instance == null)
             instance = new Conexion();
         return instance;
