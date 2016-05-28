@@ -3,13 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package interfaces;
+
+import java.util.List;
 
 /**
  *
- * @author Juan Yáñez (Juan B. Yanez)
+ * @author MClovin
  */
-public class interfaces {
-
+public interface interfaces <cualquiercosa>{
+    
+    public boolean insertar (cualquiercosa c);
+    public boolean eliminar(Object key);
+    public boolean modificar(cualquiercosa c);
+    
+    public cualquiercosa read(Object key);
+    public List<cualquiercosa> readAll();
+    
+    
+    
+    
 }
