@@ -101,7 +101,7 @@ create table Compra #3
 );
 
 use mysql;
-create user 'admin_Sis_Venta'@'localhost' identified by '';
+create user 'admin_Sis_Venta'@'localhost' identified by '123';
 grant all privileges on Sistema_Venta.* to 'admin_Sis_Venta'@'localhost';
 flush privileges;
 ```
