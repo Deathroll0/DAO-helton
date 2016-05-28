@@ -24,7 +24,7 @@ public class Conexion {
     private Conexion(){
         try {
             Class.forName("com.mysql.jdbc.Driver"); // Driver
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Sistema_Venta?zeroDateTimeBehavior=convertToNull", "admin_Sis_Venta@localhost", "123"); // Url
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Sistema_Venta?zeroDateTimeBehavior=convertToNull", "admin_Sis_Venta", "123"); // Url
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
