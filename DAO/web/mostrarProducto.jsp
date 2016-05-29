@@ -1,7 +1,7 @@
 <%-- 
-    Document   : test
-    Created on : 28-may-2016, 10:54:25
-    Author     : Juan B. Yanez
+    Document   : mostrarProducto
+    Created on : 28-05-2016, 20:44:00
+    Author     : MClovin
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
