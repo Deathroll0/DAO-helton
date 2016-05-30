@@ -33,12 +33,15 @@ public class modificarProducto extends HttpServlet {
         String codigo = request.getParameter("txtCodigo").trim();
         String nombre=request.getParameter("txtNombre").trim();
         String stock=request.getParameter("txtStock").trim();
+        String precio = request.getParameter("txtPrecio").trim();
+        
         int st=0;
+        int pre = 0;
         String error = "";
         String exito="";
         
         try{
-            if(codigo.equals("") || stock.equals("") || nombre.equals("") || nombre==null || codigo==null || stock==null )
+            if(codigo.equals("") || stock.equals("") || nombre.equals("") || nombre==null || codigo==null || stock==null || precio.equals("")|| precio==null)
             {      
                 error="campo vacio";
                 request.getSession().setAttribute("myError", error);
@@ -47,8 +50,10 @@ public class modificarProducto extends HttpServlet {
             else
             {
                 st=Integer.parseInt(stock);
+                pre = Integer.parseInt(precio);
+                
                 productoDAO dao=new productoDAO();
-                productoDTO p=new productoDTO(codigo, nombre, st);
+                productoDTO p=new productoDTO(codigo, nombre, st, pre);
                 
                 if (dao.modificar(p)) 
                 {

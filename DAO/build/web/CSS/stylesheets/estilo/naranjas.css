@@ -1,0 +1,23 @@
+body{
+	background: #A8B2A4;
+}
+
+p{
+	color: black;
+}
+
+a{
+	color: orange;
+}
+
+.btn-primary, .btn-lg {
+	color: orange;
+}
+
+.jumbotron {
+	background-color:  orange;
+}
+
+.container-fluid {
+	color: #CC7E22;
+}

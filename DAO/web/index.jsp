@@ -5,42 +5,60 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Menu Venta</title>
+        <link href="CSS/stylesheets/bootstrap.min.css" rel="stylesheet"/>
     </head>
+    
     <body>
-        <h1>Ingrese a que seccion desea ingresar</h1>
-        <table border="1">
-            <tr>
-                <th>Clientes</a></th>
-                <th>Productos</a></th>           
-                <th>Compra</a></th>           
-            </tr>
-            <tr>
-                <td><a href="crearCliente.jsp"> Crear Cliente</a></td>
-                <td><a href="crearProducto.jsp"> Crear Producto </a></td>           
-                <td><a href="crearCompra.jsp"> Crear Compra</a></td>           
-            </tr>   
-            <tr>
-                <td><a href="eliminarCliente.jsp"> Eliminar Cliente</a></td>
-                <td><a href="eliminarProducto.jsp"> Eliminar Producto </a></td>           
-                <td><a href="eliminarCompra.jsp"> Eliminar Compra</a></td>           
-            </tr>
-            <tr>
-                <td><a href="buscarModificarCliente.jsp"> Modificar Cliente</a></td>
-                <td><a href="buscarModificarProducto.jsp"> Modificar Producto </a></td>           
-                <td><a href="buscarModificarCompra.jsp"> Modificar Compra</a></td>           
-            </tr>
-            <tr>
-                <td><a href="buscarCliente.jsp"> Buscar Cliente</a></td>
-                <td><a href="buscarProducto.jsp"> Buscar Producto </a></td>           
-                <td><a href="buscarCompra.jsp"> Buscar Compra</a></td>           
-            </tr>
-            <tr>
-                <td><a href="mostrarTodoCliente.do"> Mostrar Todos Los Cliente</a></td>
-                <td><a href="mostrarTodoProducto.do"> Mostrar Todos Los Producto </a></td>           
-                <td><a href="mostrarTodoCompra.do"> Mostrar Todas Las Compras</a></td>           
-            </tr>
+        <div class="container">
+            <div class="page-header">
+                <center> <h1>Menú Principal</h1> </center>
+            </div>
             
+<!--Página central-->
+<div class="row">
+<!--    Division principal-->
+    <div class="col-sm-8">
+        <blockquote>
+            Bienvenido al Sistemas de ventas! <br />
             
-        </table>
+        </blockquote>
+        Para comenzar utiliza las herramientas del menú
+    </div>
+<!--    Division Menu-->
+<div class="col-sm-3 col-sm-offset-1">
+    <div class="well">
+        <h4>COMPRAS</h4>
+        <a href="compraPaso1.do"> Crear</a><br />
+        <a href="eliminarCompra.jsp"> Eliminar</a><br />
+        <a href="buscarModificarCompra.jsp"> Modificar</a><br />
+        <a href="buscarCompra.jsp"> Buscar</a><br />
+        <a href="mostrarTodoCompra.do"> Mostrar Todo</a><br />
+    </div>
+    <div class="well ">
+        <h4>CLIENTES</h4>
+        <a href="crearCliente.jsp"> Crear</a><br />
+        <a href="eliminarCliente.jsp"> Eliminar</a><br />
+        <a href="buscarModificarCliente.jsp"> Modificar</a><br />
+        <a href="buscarCliente.jsp"> Buscar</a><br />
+        <a href="mostrarTodoCliente.do"> Mostrar Todo</a><br />
+    </div>
+    <div class="well">
+        <h4>PRODUCTOS</h4>
+        <a href="crearProducto.jsp"> Crear</a><br />
+        <a href="eliminarProducto.jsp"> Eliminar</a><br />
+        <a href="buscarModificarProducto.jsp"> Modificar</a><br />
+        <a href="buscarProducto.jsp"> Buscar</a><br />
+        <a href="mostrarTodoProducto.do"> Mostrar Todo</a><br />
+    </div>
+</div>
+    
+</div>
+        
+        </div>
+    <center>
+        <footer>
+            Creado por : Ricardo Palma - Juan B. Yáñez
+        </footer>
+    </center>
     </body>
 </html>

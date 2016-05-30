@@ -11,18 +11,20 @@ public class productoDTO {
     private String Cod_Producto;
     private String Nombre;
     private int Stock;
+    private int precio;
 
-    public productoDTO(String Cod_Producto, String Nombre, int Stock) {
-        this.Cod_Producto = Cod_Producto;
-        this.Nombre = Nombre;
-        this.Stock = Stock;
+    public productoDTO() {
     }
 
     public productoDTO(String Cod_Producto) {
         this.Cod_Producto = Cod_Producto;
     }
 
-    public productoDTO() {
+    public productoDTO(String Cod_Producto, String Nombre, int Stock, int precio) {
+        this.Cod_Producto = Cod_Producto;
+        this.Nombre = Nombre;
+        this.Stock = Stock;
+        this.precio = precio;
     }
 
     public String getCod_Producto() {
@@ -48,6 +50,16 @@ public class productoDTO {
     public void setStock(int Stock) {
         this.Stock = Stock;
     }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
+
+    
     
     
 

@@ -12,6 +12,7 @@
             Codigo     :<input type="text" name="txtCodigo"/><br>
             Nombre  :<input type="text" name="txtNombre"/><br>
             stock    :<input type="text" name="txtStock"/><br>
+            Precio    :<input type="text" name="txtPrecio"/><br>
             <input type="submit" value="Crear"/><br>
             <a href="index.jsp">Volver</a>
         </form>

@@ -33,12 +33,15 @@ public class crearProducto extends HttpServlet {
         String codigo= request.getParameter("txtCodigo").trim();
         String nombre=request.getParameter("txtNombre").trim();
         String stock=request.getParameter("txtStock").trim();
+        String precio=request.getParameter("txtPrecio").trim();
         String error="";
         String exito="";
         
         try {
             int st=Integer.parseInt(stock);
-            if (codigo.equals("")||codigo==null||nombre.equals("")||nombre==null||stock.equals("")||stock==null) 
+            int pre = Integer.parseInt(precio);
+            
+            if (codigo.equals("")||codigo==null||nombre.equals("")||nombre==null||stock.equals("")||stock==null || precio.equals("")||precio==null) 
             {
                 error="Campo vacio, debe llenar los 3 campos para poder continuar";
                 request.getSession().setAttribute("myError", error);
@@ -48,7 +51,7 @@ public class crearProducto extends HttpServlet {
             else
             {
                 productoDAO dao=new productoDAO();
-                productoDTO c=new productoDTO(codigo, nombre, st);
+                productoDTO c=new productoDTO(codigo, nombre, st, pre);
                 if (dao.insertar(c)) 
                 {
                     exito="Se han insertado los datos correctamente";

@@ -14,6 +14,7 @@
         Codigo:<%out.print(p.getCod_Producto());%><br>
         Nombre:<%out.print(p.getNombre());%><br>
         Stock:<%out.print(p.getStock());%><br>
+        Precio:<%out.print(p.getPrecio());%><br>
        <br> <a href="index.jsp"> Volver</a>
     </body>
 </html>

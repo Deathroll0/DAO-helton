@@ -22,9 +22,9 @@ import java.util.logging.Logger;
 
 public class productoDAO implements interfaces<productoDTO>{
 
-    private static final String SQL_INSERT = "INSERT INTO Producto (Cod_Producto, Nombre, Stock) VALUES (?, ?, ?)";
+    private static final String SQL_INSERT = "INSERT INTO Producto (Cod_Producto, Nombre, Stock, Precio) VALUES (?, ?, ?, ?)";
     private static final String SQL_DELETE = "DELETE FROM Producto WHERE Cod_Producto = ? ";
-    private static final String SQL_UPDATE = "UPDATE Producto SET Nombre = ?, Stock = ? WHERE Cod_Producto = ? ";
+    private static final String SQL_UPDATE = "UPDATE Producto SET Nombre = ?, Stock = ?, Precio = ? WHERE Cod_Producto = ? ";
     private static final String SQL_READ = "SELECT * FROM Producto WHERE Cod_Producto = ? ";
     private static final String SQL_READALL = "SELECT * FROM Producto";
     
@@ -40,6 +40,7 @@ public class productoDAO implements interfaces<productoDTO>{
             ps.setString(1, c.getCod_Producto());
             ps.setString(2, c.getNombre());
             ps.setInt(3, c.getStock());
+            ps.setInt(4, c.getPrecio());
             
             if(ps.executeUpdate() > 0){
                 return true;
@@ -82,7 +83,9 @@ public class productoDAO implements interfaces<productoDTO>{
             ps = con.getCon().prepareStatement(SQL_UPDATE);
             ps.setString(1, c.getNombre());
             ps.setInt(2, c.getStock());
-            ps.setString(3, c.getCod_Producto());
+            ps.setInt(3, c.getPrecio());
+            ps.setString(4, c.getCod_Producto());
+            
             
             if (ps.executeUpdate() > 0) {
                 return true;
@@ -114,7 +117,7 @@ public class productoDAO implements interfaces<productoDTO>{
             res = ps.executeQuery();
             
             while (res.next()) {
-                p = new productoDTO(res.getString(1), res.getString(2), Integer.parseInt(res.getString(3)));
+                p = new productoDTO(res.getString(1), res.getString(2), Integer.parseInt(res.getString(3)), Integer.parseInt(res.getString(4)));
             }
             return p;
         } catch (SQLException ex) {
@@ -141,7 +144,8 @@ public class productoDAO implements interfaces<productoDTO>{
             res = ps.executeQuery();
             
             while (res.next()) {
-                productoDTO p = new productoDTO(res.getString(1), res.getString(2), Integer.parseInt(res.getString(3)));
+                productoDTO p = new productoDTO(res.getString(1), res.getString(2),
+                                    Integer.parseInt(res.getString(3)), Integer.parseInt(res.getString(4)));
                 lista.add(p);
             }
             return lista;

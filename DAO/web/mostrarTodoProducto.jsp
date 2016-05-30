@@ -19,6 +19,7 @@
                 <td>Codigo</td>
                 <td>Nombre</td>
                 <td>Stock</td>
+                <td>Precio</td>
             </tr>
             <%
                 for(int i=0; i<productos.size(); i++)
@@ -27,6 +28,7 @@
                         out.println("<td>" + productos.get(i).getCod_Producto() + "</td>");
                         out.println("<td>" + productos.get(i).getNombre()+ "</td>");
                         out.println("<td>" + productos.get(i).getStock()+ "</td>");
+                        out.println("<td>" + productos.get(i).getPrecio()+ "</td>");
                     out.println("</tr>");
                 }
             %>
