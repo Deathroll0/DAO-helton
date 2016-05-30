@@ -14,10 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author MClovin
- */
+
 public class crearProducto extends HttpServlet {
 
     /**
@@ -43,8 +40,15 @@ public class crearProducto extends HttpServlet {
             int st=Integer.parseInt(stock);
             if (codigo.equals("")||codigo==null||nombre.equals("")||nombre==null||stock.equals("")||stock==null) 
             {
-            productoDAO dao=new productoDAO();
-            productoDTO c=new productoDTO(codigo, nombre, st);
+                error="Campo vacio, debe llenar los 3 campos para poder continuar";
+                request.getSession().setAttribute("myError", error);
+                request.getRequestDispatcher("error.jsp").forward(request, response);
+                
+            } 
+            else
+            {
+                productoDAO dao=new productoDAO();
+                productoDTO c=new productoDTO(codigo, nombre, st);
                 if (dao.insertar(c)) 
                 {
                     exito="Se han insertado los datos correctamente";
@@ -57,13 +61,6 @@ public class crearProducto extends HttpServlet {
                     request.getSession().setAttribute("myError", error);
                     request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
-                
-            } 
-            else
-            {
-                error="Campo vacio, debe llenar los 3 campos para poder continuar";
-                request.getSession().setAttribute("myError", error);
-                request.getRequestDispatcher("error.jsp").forward(request, response);
             }
             
         } catch (Exception e) {
@@ -72,7 +69,7 @@ public class crearProducto extends HttpServlet {
             request.getSession().setAttribute("myError", error);
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

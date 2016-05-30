@@ -5,6 +5,8 @@
  */
 package controlador;
 
+import dao.clienteDAO;
+import dto.clienteDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,10 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author MClovin
- */
+
 public class buscarModificarCliente extends HttpServlet {
 
     /**
@@ -31,7 +30,30 @@ public class buscarModificarCliente extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+        String rut =  request.getParameter("txtRut").trim();
+        String error="";        
+        if(rut==null || rut.equals(""))
+        {
+            error= "No existen datos";
+            request.getSession().setAttribute("myError", error);
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
+        else
+        {
+                clienteDAO dao=new clienteDAO();
+                clienteDTO c2= dao.read(rut);
+                if(c2==null)
+                {
+                error= "No existen datos";
+                request.getSession().setAttribute("myError", error);
+                request.getRequestDispatcher("error.jsp").forward(request, response);
+                }
+                else
+                {
+                request.getSession().setAttribute("myModificarC", c2);
+                request.getRequestDispatcher("modificarCliente.jsp").forward(request, response);
+                }
+            }
         }
     }
 

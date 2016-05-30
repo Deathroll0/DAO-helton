@@ -6,10 +6,7 @@
 
 package dto;
 
-/**
- *
- * @author Juan Yáñez (Juan B. Yanez)
- */
+
 public class productoDTO {
     private String Cod_Producto;
     private String Nombre;

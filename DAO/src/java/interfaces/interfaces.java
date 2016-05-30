@@ -7,10 +7,6 @@ package interfaces;
 
 import java.util.List;
 
-/**
- *
- * @author MClovin
- */
 public interface interfaces <cualquiercosa>{
     
     public boolean insertar (cualquiercosa c);

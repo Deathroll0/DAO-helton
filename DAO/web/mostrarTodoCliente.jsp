@@ -1,17 +1,35 @@
-<%-- 
-    Document   : mostrarTodoCliente
-    Created on : 28-05-2016, 20:42:00
-    Author     : MClovin
---%>
 
+<%@page import="java.util.List"%>
+<%@page import="dto.clienteDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Mostrar todos los clientes</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%
+          List<clienteDTO> clientes =  (List<clienteDTO>)request.getSession().getAttribute("myListC");
+         %>        
+         
+             <table border="1">
+            <tr>
+                <td>Rut</td>
+                <td>Nombre</td>
+                <td>Edad</td>
+            </tr>
+            <%
+                for(int i=0; i<clientes.size(); i++)
+                {
+                    out.println("<tr>");
+                        out.println("<td>" + clientes.get(i).getRut() + "</td>");
+                        out.println("<td>" + clientes.get(i).getNombre()+ "</td>");
+                        out.println("<td>" + clientes.get(i).getEdad()+ "</td>");
+                    out.println("</tr>");
+                }
+            %>
+            <br><a href="index.jsp"> Volver</a>
+             </table>
     </body>
 </html>

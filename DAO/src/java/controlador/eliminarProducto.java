@@ -8,15 +8,13 @@ package controlador;
 import dao.productoDAO;
 import dto.productoDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author MClovin
- */
+
 public class eliminarProducto extends HttpServlet {
 
     /**
@@ -29,15 +27,13 @@ public class eliminarProducto extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         String codigo = request.getParameter("txtCodigo").trim();
-        
+        try (PrintWriter out = response.getWriter()) {
+        String codigo = request.getParameter("txtCodigo").trim();
         String error = "";
         String exito=""; 
-            productoDTO p=new productoDTO(codigo);
-            productoDAO dao=new productoDAO();
-        
+            
         if(codigo.equals("") || codigo==null)
         {      
             error="campo vacio";
@@ -46,7 +42,8 @@ public class eliminarProducto extends HttpServlet {
         }
         else
         {
-            if (dao.eliminar(p)) 
+            productoDAO dao=new productoDAO();
+            if (dao.eliminar(codigo)) 
             {
             
                 exito="Se ha eliminado el producto correctamente";
@@ -60,10 +57,8 @@ public class eliminarProducto extends HttpServlet {
                 request.getSession().setAttribute("myError", error);
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }
-                
-                
             }
-        }
+        
         }
     }
 

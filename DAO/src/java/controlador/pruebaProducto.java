@@ -6,27 +6,26 @@
 
 package controlador;
 
+import dao.clienteDAO;
 import dao.productoDAO;
+import dto.clienteDTO;
 import dto.productoDTO;
 import java.util.List;
 
-/**
- *
- * @author Juan Yáñez (Juan B. Yanez)
- */
+
 public class pruebaProducto {
     
     public static void main(String[] args) {
-//        productoDAO p = new productoDAO();
+       productoDAO p = new productoDAO();
 //        
 //        productoDTO pInsertar = new productoDTO("SKU100", "Ampolleta", 10);
 //        
 //        p.insertar(pInsertar);
         
-//        productoDTO pBuscado = p.read("SKU100");
-//        System.out.println(pBuscado.getNombre());
+        productoDTO pBuscado = p.read("888");
+        System.out.println(pBuscado.getNombre());
         
-        
+        /**
         productoDAO p1 = new productoDAO();
         List<productoDTO> lista = p1.readAll();
         
@@ -34,6 +33,18 @@ public class pruebaProducto {
             System.out.println(lista.get(i).getNombre());
         }
     
+     **/
+             /**    clienteDAO dao=new clienteDAO();
+                 clienteDTO c=new clienteDTO("3", "3", 3);
+                 if(dao.insertar(c))
+                 {
+                     System.out.println("ingresado bien");
+                 }
+                 else
+                 {
+                     System.out.println("ingresado mal");
+                }**/
+                 
         
     }
     

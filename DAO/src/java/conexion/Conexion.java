@@ -12,10 +12,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Juan Yáñez (Juan B. Yanez)
- */
+
 public class Conexion {
     
     public static Conexion instance;

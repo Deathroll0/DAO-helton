@@ -19,10 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-/**
- *
- * @author Juan Yáñez (Juan B. Yanez)
- */
+
 public class productoDAO implements interfaces<productoDTO>{
 
     private static final String SQL_INSERT = "INSERT INTO Producto (Cod_Producto, Nombre, Stock) VALUES (?, ?, ?)";
@@ -52,7 +49,6 @@ public class productoDAO implements interfaces<productoDTO>{
         }finally{
             con.cerrarConexion();
         }
-        
         return false;
             
     }

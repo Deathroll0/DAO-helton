@@ -20,6 +20,58 @@
         <servlet-name>buscarModificarCliente</servlet-name>
         <servlet-class>controlador.buscarModificarCliente</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>buscarModificarProducto</servlet-name>
+        <servlet-class>controlador.buscarModificarProducto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>modificarCliente</servlet-name>
+        <servlet-class>controlador.modificarCliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>modificarProducto</servlet-name>
+        <servlet-class>controlador.modificarProducto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>buscarCliente</servlet-name>
+        <servlet-class>controlador.buscarCliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>buscarProducto</servlet-name>
+        <servlet-class>controlador.buscarProducto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>mostrarTodoCliente</servlet-name>
+        <servlet-class>controlador.mostrarTodoCliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>mostrarTodoProducto</servlet-name>
+        <servlet-class>controlador.mostrarTodoProducto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>buscarCompra</servlet-name>
+        <servlet-class>controlador.buscarCompra</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>buscarModificarCompra</servlet-name>
+        <servlet-class>controlador.buscarModificarCompra</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>crearCompra</servlet-name>
+        <servlet-class>controlador.crearCompra</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>eliminarCompra</servlet-name>
+        <servlet-class>controlador.eliminarCompra</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>modificarCompra</servlet-name>
+        <servlet-class>controlador.modificarCompra</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>mostrarTodoCompra</servlet-name>
+        <servlet-class>controlador.mostrarTodoCompra</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>crearCliente</servlet-name>
         <url-pattern>/crearCliente.do</url-pattern>
@@ -39,6 +91,58 @@
     <servlet-mapping>
         <servlet-name>buscarModificarCliente</servlet-name>
         <url-pattern>/buscarModificarCliente.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>buscarModificarProducto</servlet-name>
+        <url-pattern>/buscarModificarProducto.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>modificarCliente</servlet-name>
+        <url-pattern>/modificarCliente.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>modificarProducto</servlet-name>
+        <url-pattern>/modificarProducto.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>buscarCliente</servlet-name>
+        <url-pattern>/buscarCliente.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>buscarProducto</servlet-name>
+        <url-pattern>/buscarProducto.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>mostrarTodoCliente</servlet-name>
+        <url-pattern>/mostrarTodoCliente.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>mostrarTodoProducto</servlet-name>
+        <url-pattern>/mostrarTodoProducto.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>buscarCompra</servlet-name>
+        <url-pattern>/buscarCompra.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>buscarModificarCompra</servlet-name>
+        <url-pattern>/buscarModificarCompra.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>crearCompra</servlet-name>
+        <url-pattern>/crearCompra.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>eliminarCompra</servlet-name>
+        <url-pattern>/eliminarCompra.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>modificarCompra</servlet-name>
+        <url-pattern>/modificarCompra.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>mostrarTodoCompra</servlet-name>
+        <url-pattern>/mostrarTodoCompra.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

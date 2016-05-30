@@ -1,17 +1,19 @@
-<%-- 
-    Document   : mostrarProducto
-    Created on : 28-05-2016, 20:44:00
-    Author     : MClovin
---%>
 
+<%@page import="dto.productoDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>mostrar producto</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%
+            productoDTO p= (productoDTO) request.getSession().getAttribute("myBuscarP");
+        %>
+        Codigo:<%out.print(p.getCod_Producto());%><br>
+        Nombre:<%out.print(p.getNombre());%><br>
+        Stock:<%out.print(p.getStock());%><br>
+       <br> <a href="index.jsp"> Volver</a>
     </body>
 </html>

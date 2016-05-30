@@ -14,10 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author MClovin
- */
+
 public class crearCliente extends HttpServlet {
 
     /**
@@ -32,7 +29,6 @@ public class crearCliente extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
         String rut= request.getParameter("txtRut").trim();
         String nombre=request.getParameter("txtNombre").trim();
         String edad=request.getParameter("txtEdad").trim();
@@ -40,11 +36,18 @@ public class crearCliente extends HttpServlet {
         String exito="";
         
         try {
-            int ed=Integer.parseInt(edad);            
+            int ed=Integer.parseInt(edad);
             if (rut.equals("")||rut==null||nombre.equals("")||nombre==null||edad.equals("")||edad==null) 
             {
-                clienteDAO dao=new clienteDAO();
-            clienteDTO c=new clienteDTO(rut, nombre, ed);
+               error="Campo vacio, debe llenar los 3 campos para poder continuar";
+                request.getSession().setAttribute("myError", error);
+                request.getRequestDispatcher("error.jsp").forward(request, response);
+                
+            } 
+            else
+            {
+                 clienteDAO dao=new clienteDAO();
+                 clienteDTO c=new clienteDTO(rut, nombre, ed);
                 if (dao.insertar(c)) 
                 {
                     exito="Se han insertado los datos correctamente";
@@ -58,21 +61,18 @@ public class crearCliente extends HttpServlet {
                     request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
                 
-            } 
-            else
-            {
-                error="Campo vacio, debe llenar los 3 campos para poder continuar";
-                request.getSession().setAttribute("myError", error);
-                request.getRequestDispatcher("error.jsp").forward(request, response);
+                
+                
             }
             
         } catch (Exception e) {
-        }
             error="Debe ingresar numeros enteros en el campo edad";
             request.getSession().setAttribute("myError", error);
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
-        }
+            
+   
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

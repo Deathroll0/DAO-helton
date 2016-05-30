@@ -6,10 +6,7 @@
 
 package dto;
 
-/**
- *
- * @author Juan Yáñez (Juan B. Yanez)
- */
+
 public class clienteDTO {
     private String rut;
     private String nombre;

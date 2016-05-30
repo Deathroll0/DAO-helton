@@ -17,14 +17,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Juan Yáñez (Juan B. Yanez)
- */
+
 public class clienteDAO implements interfaces<clienteDTO>{
     
     private static final String SQL_INSERT="INSERT INTO cliente (rut,nombre,edad) VALUES (?,?,?)";
-    private static final String SQL_DELETE="DELETE FROM cliente WHERE = ?";
+    private static final String SQL_DELETE="DELETE FROM cliente WHERE rut= ?";
     private static final String SQL_UPDATE="UPDATE cliente SET nombre=?, edad=? WHERE rut=?";
     private static final String SQL_READ="SELECT * FROM cliente WHERE rut=?";
     private static final String SQL_READALL="SELECT * FROM cliente";
@@ -33,8 +30,9 @@ public class clienteDAO implements interfaces<clienteDTO>{
 
     @Override
     public boolean insertar(clienteDTO c) {
+        PreparedStatement ps;
         try {
-            PreparedStatement ps;
+            
             ps=con.getCon().prepareStatement(SQL_INSERT);
             ps.setString(1, c.getRut());
             ps.setString(2, c.getNombre());
@@ -57,8 +55,9 @@ public class clienteDAO implements interfaces<clienteDTO>{
 
     @Override
     public boolean eliminar(Object key) {
+        PreparedStatement ps;
         try {
-            PreparedStatement ps;
+            
             ps=con.getCon().prepareStatement(SQL_DELETE);
             ps.setString(1, key.toString());
             if(ps.executeUpdate()>0)
@@ -76,8 +75,9 @@ public class clienteDAO implements interfaces<clienteDTO>{
 
     @Override
     public boolean modificar(clienteDTO c) {
+        PreparedStatement ps;
         try {
-            PreparedStatement ps;
+            
             ps=con.getCon().prepareStatement(SQL_UPDATE);
             ps.setString(1, c.getNombre());
             ps.setInt(2, c.getEdad());

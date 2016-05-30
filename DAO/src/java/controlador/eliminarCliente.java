@@ -14,10 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author MClovin
- */
+
 public class eliminarCliente extends HttpServlet {
 
     /**
@@ -33,12 +30,9 @@ public class eliminarCliente extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-        String rut = request.getParameter("txtRut").trim();
-        
+        String rut = request.getParameter("txtRut").trim(); 
         String error = "";
         String exito=""; 
-            clienteDTO c=new clienteDTO(rut);
-            clienteDAO dao=new clienteDAO();
         
         if(rut.equals("") || rut==null)
         {      
@@ -48,7 +42,8 @@ public class eliminarCliente extends HttpServlet {
         }
         else
         {
-            if (dao.eliminar(c)) 
+            clienteDAO dao=new clienteDAO();
+            if (dao.eliminar(rut)) 
             {
             
                 exito="Se ha eliminado el cliente correctamente";
@@ -62,8 +57,6 @@ public class eliminarCliente extends HttpServlet {
                 request.getSession().setAttribute("myError", error);
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }
-                
-                
             }
         }
     }
