@@ -43,6 +43,9 @@ _____________________
 
 ##MySQL
 ```
+use mysql;
+drop database Sistema_Venta;
+
 create database Sistema_Venta;
 use Sistema_Venta;
 
@@ -68,20 +71,21 @@ create table Producto #2
 	Cod_Producto varchar(6),
     Nombre varchar(30),
     Stock int,
+    Precio int,
     
     primary key(Cod_Producto)
 );
 
-INSERT INTO Producto VALUES("SKU001","Televisor",10);
-INSERT INTO Producto VALUES("SKU002","Play Station 4",10);
-INSERT INTO Producto VALUES("SKU003","Pendrive",10);
-INSERT INTO Producto VALUES("SKU004","Notebook",10);
-INSERT INTO Producto VALUES("SKU005","Celular",10);
-INSERT INTO Producto VALUES("SKU006","Lavadora",10);
-INSERT INTO Producto VALUES("SKU007","Microondas",10);
-INSERT INTO Producto VALUES("SKU008","Plancha",10);
-INSERT INTO Producto VALUES("SKU009","Radio",10);
-INSERT INTO Producto VALUES("SKU010","PS Vita",10);
+INSERT INTO Producto VALUES("SKU001","Televisor",10,200000);
+INSERT INTO Producto VALUES("SKU002","Play Station 4",10,450000);
+INSERT INTO Producto VALUES("SKU003","Pendrive",10,5000);
+INSERT INTO Producto VALUES("SKU004","Notebook",10,700000);
+INSERT INTO Producto VALUES("SKU005","Celular",10,200000);
+INSERT INTO Producto VALUES("SKU006","Lavadora",10,160000);
+INSERT INTO Producto VALUES("SKU007","Microondas",10,90000);
+INSERT INTO Producto VALUES("SKU008","Plancha",10,30000);
+INSERT INTO Producto VALUES("SKU009","Radio",10,55000);
+INSERT INTO Producto VALUES("SKU010","PS Vita",10,120000);
 
 create table Compra #3
 (
@@ -100,8 +104,8 @@ create table Compra #3
 		foreign key (Cod_Producto) references Producto(Cod_Producto)
 );
 
-use mysql;
-create user 'admin_Sis_Venta'@'localhost' identified by '123';
-grant all privileges on Sistema_Venta.* to 'admin_Sis_Venta'@'localhost';
-flush privileges;
+#use mysql;
+#create user 'admin_Sis_Venta'@'localhost' identified by '123';
+#grant all privileges on Sistema_Venta.* to 'admin_Sis_Venta'@'localhost';
+#flush privileges;
 ```
