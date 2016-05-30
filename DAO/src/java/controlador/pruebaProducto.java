@@ -22,7 +22,7 @@ public class pruebaProducto {
 //        
 //        p.insertar(pInsertar);
         
-        productoDTO pBuscado = p.read("888");
+        productoDTO pBuscado = p.read("SKU100");
         System.out.println(pBuscado.getNombre());
         
         /**
