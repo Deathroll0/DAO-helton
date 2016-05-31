@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Compra Paso 1</title>
         <link href="CSS/stylesheets/bootstrap.min.css" rel="stylesheet"/>
     </head>
     
@@ -59,11 +59,13 @@
                                 out.println("<tr>");
     //                                out.println("<td>" + listaProductos.get(i).getCod_Producto() + "</td>");
                                     out.println("<td>" + listaProductos.get(i).getNombre()+ "</td>");
-                                    out.println("<td>" + listaProductos.get(i).getStock()+ "</td>");
-                                    out.println("<td>" + listaProductos.get(i).getPrecio()+ "</td>");
+                                    out.println("<td><center>" + listaProductos.get(i).getStock()+ "</center></td> ");
+                                    out.println("<td><center>" + listaProductos.get(i).getPrecio()+ "</center></td>");
+                                    
+                                    String cod = listaProductos.get(i).getCod_Producto();
 
-                                    out.println("<center><td> <input type='checkbox' name='SKU' value='"+i+"-"+listaProductos.get(i).getCod_Producto()+"' /> </td></center>");
-                                    out.println("<td><input type='text' name='"+i+"-"+"txtCantidad' size='12px' /></td>");
+                                    out.println("<td><center> <input type='radio' name='radios' value=' "+i+"-"+cod+" ' checked/> </center></td>");
+                                    out.println("<td><center> <input type='text' name='txtCant"+i+"' size='12px' /></center></td>");
                                 out.println("</tr>");
                             }
                         }
@@ -71,7 +73,7 @@
                 </tbody>
                 </table>
                 
-                <input type="submit" value="Comprar PASO 2" />
+                <input type="submit" value="Comprar PASO 2" class="btn btn-success" />
                 
             </form>
         </div>
@@ -79,7 +81,7 @@
 <!--    Division Menu-->
 <div class="col-sm-3 col-sm-offset-1">
     <div class="well">
-        <h4>COMPRAS</h4>
+        <h4>COMPRAS <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></h4>
         <a href="compraPaso1.do"> Crear</a><br />
         <a href="eliminarCompra.jsp"> Eliminar</a><br />
         <a href="buscarModificarCompra.jsp"> Modificar</a><br />
@@ -87,7 +89,7 @@
         <a href="mostrarTodoCompra.do"> Mostrar Todo</a><br />
     </div>
     <div class="well ">
-        <h4>CLIENTES</h4>
+        <h4>CLIENTES <span class="glyphicon glyphicon-user" aria-hidden="true"></span></h4>
         <a href="crearCliente.jsp"> Crear</a><br />
         <a href="eliminarCliente.jsp"> Eliminar</a><br />
         <a href="buscarModificarCliente.jsp"> Modificar</a><br />
@@ -95,7 +97,7 @@
         <a href="mostrarTodoCliente.do"> Mostrar Todo</a><br />
     </div>
     <div class="well">
-        <h4>PRODUCTOS</h4>
+        <h4>PRODUCTOS <span class="glyphicon glyphicon-barcode" aria-hidden="true"></span></h4>
         <a href="crearProducto.jsp"> Crear</a><br />
         <a href="eliminarProducto.jsp"> Eliminar</a><br />
         <a href="buscarModificarProducto.jsp"> Modificar</a><br />

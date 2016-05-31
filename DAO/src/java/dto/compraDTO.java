@@ -30,6 +30,15 @@ public class compraDTO {
         this.rut = rut;
         this.cod_prod = cod_prod;
     }
+    
+    public compraDTO(String fecha, int cantidad, int precio, String rut, String cod_prod) {
+        this.id = id;
+        this.fecha = fecha;
+        this.cantidad = cantidad;
+        this.precio = precio;
+        this.rut = rut;
+        this.cod_prod = cod_prod;
+    }
 
     public int getId() {
         return id;

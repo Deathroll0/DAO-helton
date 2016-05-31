@@ -80,6 +80,10 @@
         <servlet-name>compraPaso2</servlet-name>
         <servlet-class>controlador.compraPaso2</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>compraPaso3</servlet-name>
+        <servlet-class>controlador.compraPaso3</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>crearCliente</servlet-name>
         <url-pattern>/crearCliente.do</url-pattern>
@@ -159,6 +163,10 @@
     <servlet-mapping>
         <servlet-name>compraPaso2</servlet-name>
         <url-pattern>/compraPaso2.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>compraPaso3</servlet-name>
+        <url-pattern>/compraPaso3.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

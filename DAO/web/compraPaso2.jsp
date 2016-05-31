@@ -1,24 +1,18 @@
 <%-- 
-    Document   : compraPaso1
-    Created on : 30-may-2016, 14:51:18
+    Document   : compraPaso2
+    Created on : 30-may-2016, 20:57:42
     Author     : Juan B. Yanez
 --%>
 
-<%@page import="dto.productoDTO"%>
-<%@page import="java.util.List"%>
+<%@page import="dto.compraDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Compra Paso 1</title>
-        <link href="CSS/stylesheets/bootstrap.min.css" rel="stylesheet"/>
+        <title>Compra Paso 2</title>
+    <link href="CSS/stylesheets/bootstrap.min.css" rel="stylesheet"/>
     </head>
-    
-    <%
-        List<productoDTO> listaProductos = (List<productoDTO>) request.getSession().getAttribute("listaProductos");
-    %>
-    
     
     <body>
         <div class="container">
@@ -31,52 +25,50 @@
 <!--    Division principal-->
     <div class="col-sm-8">
         <blockquote>
-            Compras : PASO 1
+            Compras : PASO 2 <br />
+            Confirma tu compra ingresando tu rut y luego presiona "Comprar"
         </blockquote>
         
         <div class="col-sm-10">
-            <form action="compraPaso2.do" method="post">
+            <form action="compraPaso3.do" method="POST">
                 
-                <!-- Lista de Productos -->
+                <%
+                    compraDTO compra = (compraDTO) request.getSession().getAttribute("compra");
+                    
+                    String nomProd = (String) request.getSession().getAttribute("nomProd");
+                %>
+                
+                <input type="text" name="txtRut" placeholder="Ingresa rut Cliente" />
+                <input type="submit" value="Comprar" class="btn btn-success" />
+                <br /><br />
                 <table class="table table-responsive table-bordered table-hover">
+                    
                     <thead>
                         <tr>
-                            <!--<td>Codigo</td>-->
-                            <th>Nombre</th>
-                            <th>Stock</th>
-                            <th>Precio</th>
-                            <th>Comprar</th>
+                            <th>Producto</th>
                             <th>Cantidad</th>
-
+                            <th>Precio Total</th>
+                            <th>Fecha</th>
                         </tr>
                     </thead>
-                <tbody>
-                    <%
-                        for(int i=0; i<listaProductos.size(); i++)
-                        {
-                            if(listaProductos.get(i).getStock() > 0)
-                            {
-                                out.println("<tr>");
-    //                                out.println("<td>" + listaProductos.get(i).getCod_Producto() + "</td>");
-                                    out.println("<td>" + listaProductos.get(i).getNombre()+ "</td>");
-                                    out.println("<td><center>" + listaProductos.get(i).getStock()+ "</center></td> ");
-                                    out.println("<td><center>" + listaProductos.get(i).getPrecio()+ "</center></td>");
-                                    
-                                    String cod = listaProductos.get(i).getCod_Producto();
-
-                                    out.println("<td><center> <input type='radio' name='radios' value=' "+i+"-"+cod+" ' checked/> </center></td>");
-                                    out.println("<td><center> <input type='text' name='txtCant"+i+"' size='12px' /></center></td>");
-                                out.println("</tr>");
-                            }
-                        }
-                    %>
-                </tbody>
+                    <tbody>
+                        <tr>
+                            <td><% out.print(nomProd); %></td>
+                            <td><% out.print(compra.getCantidad()); %></td>
+                            <td><% out.print(compra.getPrecio()); %></td>
+                            <td><% out.print(compra.getFecha()); %></td>
+                            
+                        </tr>
+                    </tbody>
                 </table>
-                
-                <input type="submit" value="Comprar PASO 2" class="btn btn-success" />
-                
+                            
+                            
+                            
             </form>
         </div>
+        
+        
+        
     </div>
 <!--    Division Menu-->
 <div class="col-sm-3 col-sm-offset-1">

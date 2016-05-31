@@ -5,7 +5,10 @@
  */
 package controlador;
 
+import dao.clienteDAO;
+import dao.compraDAO;
 import dao.productoDAO;
+import dto.clienteDTO;
 import dto.compraDTO;
 import dto.productoDTO;
 import java.io.IOException;
@@ -19,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Juan B. Yanez
  */
-public class compraPaso2 extends HttpServlet {
+public class compraPaso3 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,69 +36,51 @@ public class compraPaso2 extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        //tirando los SKU
+        // Variables
+        compraDTO compra = (compraDTO) request.getSession().getAttribute("compra");
+        String rut = (String) request.getParameter("txtRut");
         
-        String algo = (String) request.getParameter("radios");
+        String error = "";
+        String exito = "";
         
-        String error="";
+        clienteDAO cDAO = new clienteDAO();
+        clienteDTO clienteDTO = cDAO.read(rut);
         
-        if (algo != null) {
+        if (clienteDTO == null) {
+            error= "Cliente no encotrado";
+            request.getSession().setAttribute("myError", error);
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }else{
+            //Ahora si último paso
             
-            String div[] = algo.split("-");
+            productoDAO proDAO = new productoDAO();
+            productoDTO pordBuscarStock = proDAO.read(compra.getCod_prod());
             
-            String pos = div[0].trim();
-            String SKU = div[1].trim();
-            
-            String buscar = "txtCant"+pos;
-            
-//            if (buscar != null) {
-//                String cantidad = (String) request.getParameter(buscar);
-//                request.getSession().setAttribute("myExito", cantidad);
-//                request.getRequestDispatcher("exito.jsp").forward(request, response);
-//            }
-            
-            String cantidad = (String) request.getParameter(buscar).trim();
-            
-            if (cantidad.equals("")||cantidad==null) {
-                error= "Ingresa una cantidad para el producto...";
-                request.getSession().setAttribute("myError", error);
-                request.getRequestDispatcher("error.jsp").forward(request, response);
-            }
-            
-            try {
-                int cant = Integer.parseInt(cantidad);
+            if ( pordBuscarStock.getStock() - compra.getCantidad() >= 0 ) {
                 
-                productoDAO dao = new productoDAO();
-                productoDTO pDTO = dao.read(SKU);
+                pordBuscarStock.setStock(pordBuscarStock.getStock() - compra.getCantidad());
                 
-                if (pDTO.getStock() >= cant && (pDTO.getStock() - cant) >= 0 ) {
-                    
-                    // ID - fecha - cantidad - Precio - rut - Cod_Producto
-                    
-                    String[] compra = {"001","30-may-2016",""+cant,""+(pDTO.getPrecio() * cant),"SKU" };
-//                    compraDTO comprita = new compraDTO(1, "30-may-2016", cant, (cant*pDTO.getPrecio()), "x", SKU);
-                    compraDTO comprita = new compraDTO("30-may-2016", cant, (cant*pDTO.getPrecio()), "x", SKU);
-                    
-                    
-                    request.getSession().setAttribute("compra", comprita);
-                    request.getSession().setAttribute("nomProd", pDTO.getNombre());
-                    request.getRequestDispatcher("compraPaso2.jsp").forward(request, response);                    
-                    
+                proDAO.modificar(pordBuscarStock);
+                
+                
+                compraDAO compritaDAO = new compraDAO();
+                compraDTO compritaDTO = new compraDTO(compra.getFecha(), compra.getCantidad(), compra.getPrecio(), rut, compra.getCod_prod());
+                if (compritaDAO.insertar(compritaDTO)) {
+                    exito= "Se realizó la compra perfectamente!";
+                    request.getSession().setAttribute("myExito", exito);
+                    request.getRequestDispatcher("exito.jsp").forward(request, response);
                 }else{
-                    error= "Supera el Stock del producto...";
+                    error= "No se realizó la compra...";
                     request.getSession().setAttribute("myError", error);
                     request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
                 
                 
-            } catch (NumberFormatException e) {
-                error= "Deben ser cantidad númerica..";
+            }else{
+                error= "Mala suerte el stock cambió...";
                 request.getSession().setAttribute("myError", error);
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }
-            
-            
-            
             
         }
         

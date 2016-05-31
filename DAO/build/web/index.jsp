@@ -27,7 +27,7 @@
 <!--    Division Menu-->
 <div class="col-sm-3 col-sm-offset-1">
     <div class="well">
-        <h4>COMPRAS</h4>
+        <h4>COMPRAS <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></h4>
         <a href="compraPaso1.do"> Crear</a><br />
         <a href="eliminarCompra.jsp"> Eliminar</a><br />
         <a href="buscarModificarCompra.jsp"> Modificar</a><br />
@@ -35,7 +35,7 @@
         <a href="mostrarTodoCompra.do"> Mostrar Todo</a><br />
     </div>
     <div class="well ">
-        <h4>CLIENTES</h4>
+        <h4>CLIENTES <span class="glyphicon glyphicon-user" aria-hidden="true"></span></h4>
         <a href="crearCliente.jsp"> Crear</a><br />
         <a href="eliminarCliente.jsp"> Eliminar</a><br />
         <a href="buscarModificarCliente.jsp"> Modificar</a><br />
@@ -43,7 +43,7 @@
         <a href="mostrarTodoCliente.do"> Mostrar Todo</a><br />
     </div>
     <div class="well">
-        <h4>PRODUCTOS</h4>
+        <h4>PRODUCTOS <span class="glyphicon glyphicon-barcode" aria-hidden="true"></span></h4>
         <a href="crearProducto.jsp"> Crear</a><br />
         <a href="eliminarProducto.jsp"> Eliminar</a><br />
         <a href="buscarModificarProducto.jsp"> Modificar</a><br />

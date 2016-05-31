@@ -18,7 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class compraDAO implements interfaces<compraDTO>{
-    private static final String SQL_INSERT = "INSERT INTO compra (Id, Fecha, Cantidad, Precio, Rut, Cod_Producto) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String SQL_INSERT = "INSERT INTO compra ( Fecha, Cantidad, Precio, Rut, Cod_Producto) VALUES ( ?, ?, ?, ?, ?)";
     private static final String SQL_DELETE = "DELETE FROM compra WHERE Id = ? ";
     private static final String SQL_UPDATE = "UPDATE compra SET Fecha = ?, Cantidad = ?, Precio = ?, Rut = ?, Cod_Producto = ? WHERE Id = ? ";
     private static final String SQL_READ = "SELECT * FROM compra WHERE Id = ? ";
@@ -31,12 +31,12 @@ public class compraDAO implements interfaces<compraDTO>{
         try {
             PreparedStatement ps;
             ps = con.getCon().prepareStatement(SQL_INSERT);
-            ps.setInt(1, c.getId());
-            ps.setString(2, c.getFecha());
-            ps.setInt(3, c.getCantidad());
-            ps.setInt(4, c.getPrecio());
-            ps.setString(5, c.getRut());
-            ps.setString(6, c.getCod_prod());
+//            ps.setInt(1, c.getId());
+            ps.setString(1, c.getFecha());
+            ps.setInt(2, c.getCantidad());
+            ps.setInt(3, c.getPrecio());
+            ps.setString(4, c.getRut());
+            ps.setString(5, c.getCod_prod());
             
             if(ps.executeUpdate() > 0){
                 return true;
