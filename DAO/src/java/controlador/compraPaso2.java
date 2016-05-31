@@ -44,7 +44,7 @@ public class compraPaso2 extends HttpServlet {
         
         if (algo != null) {
             
-            String div[] = algo.split("-");
+            String div[] = algo.split("[.]");
             
             String pos = div[0].trim();
             String SKU = div[1].trim();
@@ -60,7 +60,7 @@ public class compraPaso2 extends HttpServlet {
             String cantidad = (String) request.getParameter(buscar).trim();
             
             if (cantidad.equals("")||cantidad==null) {
-                error= "Ingresa una cantidad para el producto...";
+                error= "Ingresa una cantidad para el producto seleccionado...";
                 request.getSession().setAttribute("myError", error);
                 request.getSession().setAttribute("myTitulo", titulo);
                 request.getRequestDispatcher("error.jsp").forward(request, response);
@@ -72,12 +72,19 @@ public class compraPaso2 extends HttpServlet {
                 productoDAO dao = new productoDAO();
                 productoDTO pDTO = dao.read(SKU);
                 
-                if (pDTO.getStock() >= cant && (pDTO.getStock() - cant) >= 0 ) {
+                //Valida Cantidad negativa
+                if (cant <= 0) {
+                    error= "La cantidad de productos está incorrecta...";
+                    request.getSession().setAttribute("myError", error);
+                    request.getSession().setAttribute("myTitulo", titulo);
+                    request.getRequestDispatcher("error.jsp").forward(request, response);
+                }else{
+                    if ( (pDTO.getStock() >= cant) && ((pDTO.getStock() - cant) >= 0) ) {
                     
                     // ID - fecha - cantidad - Precio - rut - Cod_Producto
                     
                     String[] compra = {"001","30-may-2016",""+cant,""+(pDTO.getPrecio() * cant),"SKU" };
-//                    compraDTO comprita = new compraDTO(1, "30-may-2016", cant, (cant*pDTO.getPrecio()), "x", SKU);
+                    //compraDTO comprita = new compraDTO(1, "30-may-2016", cant, (cant*pDTO.getPrecio()), "x", SKU);
                     compraDTO comprita = new compraDTO("30-may-2016", cant, (cant*pDTO.getPrecio()), "x", SKU);
                     
                     
@@ -86,16 +93,15 @@ public class compraPaso2 extends HttpServlet {
                     request.getSession().setAttribute("myTitulo", titulo);
                     request.getRequestDispatcher("compraPaso2.jsp").forward(request, response);                    
                     
-                }else{
-                    error= "Supera el Stock del producto...";
-                    request.getSession().setAttribute("myError", error);
-                    request.getSession().setAttribute("myTitulo", titulo);
-                    request.getRequestDispatcher("error.jsp").forward(request, response);
+                    }else{
+                        error= "Supera el Stock del producto...";
+                        request.getSession().setAttribute("myError", error);
+                        request.getSession().setAttribute("myTitulo", titulo);
+                        request.getRequestDispatcher("error.jsp").forward(request, response);
+                    }
                 }
-                
-                
             } catch (NumberFormatException e) {
-                error= "Deben ser cantidad númerica..";
+                error= "La cantidad de productos debe ser númerica..";
                 request.getSession().setAttribute("myError", error);
                 request.getSession().setAttribute("myTitulo", titulo);
                 request.getRequestDispatcher("error.jsp").forward(request, response);

@@ -4,6 +4,7 @@
     Author     : Juan B. Yanez
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="dto.productoDTO"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -31,7 +32,7 @@
 <!--    Division principal-->
     <div class="col-sm-8">
         <blockquote>
-            Compras : PASO 1
+            Selecciona tu compra, agrega una cantidad de productos y presiona "Siguiente".
         </blockquote>
         
         <div class="col-sm-10">
@@ -43,29 +44,67 @@
                         <tr>
                             <!--<td>Codigo</td>-->
                             <th>Nombre</th>
-                            <th>Stock</th>
-                            <th>Precio</th>
-                            <th>Comprar</th>
-                            <th>Cantidad</th>
+                            <th><center>Stock</center></th>
+                            <th><center>Precio</center></th>
+                            <th><center>Comprar</center></th>
+                            <th><center>Cantidad</center></th>
 
                         </tr>
                     </thead>
                 <tbody>
                     <%
+        
+                        ArrayList<productoDTO> listaProdFiltro = new ArrayList<productoDTO>();
+        
                         for(int i=0; i<listaProductos.size(); i++)
                         {
-                            if(listaProductos.get(i).getStock() > 0)
+                            //Test
+                            if(listaProductos.get(i).getStock() > 0){
+                                listaProdFiltro.add(listaProductos.get(i));
+                            }
+                            //Fin
+                            
+//                            if(listaProductos.get(i).getStock() > 0)
+//                            {
+//                                out.println("<tr>");
+//                                out.println("<td>" + listaProductos.get(i).getNombre()+ "</td>");
+//                                out.println("<td><center>" + listaProductos.get(i).getStock()+ "</center></td> ");
+//                                out.println("<td><center>$ " + listaProductos.get(i).getPrecio()+ "</center></td>");
+//
+//                                String cod = listaProductos.get(i).getCod_Producto();
+//
+//                                out.println("<td><center> <input type='radio' name='radios' value=' "+i+"."+cod+" ' checked/> </center></td>");
+//                                out.println("<td><center> <input type='text' name='txtCant"+i+"' size='12px' /></center></td>");
+//                                out.println("</tr>");
+//                            }
+                        }
+                        
+                        for(int i =0; i < listaProdFiltro.size();i++){
+                            
+                            if (i == 0) {
+                                    out.println("<tr>");
+                                    out.println("<td>" + listaProdFiltro.get(i).getNombre()+ "</td>");
+                                    out.println("<td><center>" + listaProdFiltro.get(i).getStock()+ "</center></td> ");
+                                    out.println("<td><center>$ " + listaProdFiltro.get(i).getPrecio()+ "</center></td>");
+
+                                    String cod = listaProdFiltro.get(i).getCod_Producto();
+
+                                    out.println("<td><center> <input type='radio' name='radios' value=' "+i+"."+cod+" ' checked/> </center></td>");
+                                    out.println("<td><center> <input type='text' name='txtCant"+i+"' size='12px' /></center></td>");
+                                    out.println("</tr>");
+                                }
+                            
+                            if(i > 0)
                             {
                                 out.println("<tr>");
-    //                                out.println("<td>" + listaProductos.get(i).getCod_Producto() + "</td>");
-                                    out.println("<td>" + listaProductos.get(i).getNombre()+ "</td>");
-                                    out.println("<td><center>" + listaProductos.get(i).getStock()+ "</center></td> ");
-                                    out.println("<td><center>" + listaProductos.get(i).getPrecio()+ "</center></td>");
-                                    
-                                    String cod = listaProductos.get(i).getCod_Producto();
+                                out.println("<td>" + listaProdFiltro.get(i).getNombre()+ "</td>");
+                                out.println("<td><center>" + listaProdFiltro.get(i).getStock()+ "</center></td> ");
+                                out.println("<td><center>$ " + listaProdFiltro.get(i).getPrecio()+ "</center></td>");
 
-                                    out.println("<td><center> <input type='radio' name='radios' value=' "+i+"-"+cod+" ' checked/> </center></td>");
-                                    out.println("<td><center> <input type='text' name='txtCant"+i+"' size='12px' /></center></td>");
+                                String cod = listaProdFiltro.get(i).getCod_Producto();
+
+                                out.println("<td><center> <input type='radio' name='radios' value=' "+i+"."+cod+" '/> </center></td>");
+                                out.println("<td><center> <input type='text' name='txtCant"+i+"' size='12px' /></center></td>");
                                 out.println("</tr>");
                             }
                         }
@@ -73,7 +112,7 @@
                 </tbody>
                 </table>
                 
-                <input type="submit" value="Comprar PASO 2" class="btn btn-success" />
+                <input type="submit" value="Siguiente" class="btn btn-success" />
                 
             </form>
         </div>

@@ -46,17 +46,17 @@
                     <thead>
                         <tr>
                             <th>Producto</th>
-                            <th>Cantidad</th>
-                            <th>Precio Total</th>
-                            <th>Fecha</th>
+                            <th><center>Cantidad</center></th>
+                            <th><center>Precio Total</center></th>
+                            <th><center>Fecha</center></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><% out.print(nomProd); %></td>
-                            <td><% out.print(compra.getCantidad()); %></td>
-                            <td><% out.print(compra.getPrecio()); %></td>
-                            <td><% out.print(compra.getFecha()); %></td>
+                            <td><center><% out.print(compra.getCantidad()); %> </center></td>
+                            <td><center><% out.print(compra.getPrecio()); %> </center></td>
+                            <td><center><% out.print(compra.getFecha()); %> </center></td>
                             
                         </tr>
                     </tbody>

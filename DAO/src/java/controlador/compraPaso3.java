@@ -78,10 +78,12 @@ public class compraPaso3 extends HttpServlet {
                     if (compritaDAO.insertar(compritaDTO)) {
                         exito= "Se realizó la compra perfectamente!";
                         request.getSession().setAttribute("myExito", exito);
+                        request.getSession().setAttribute("myTitulo", titulo);
                         request.getRequestDispatcher("exito.jsp").forward(request, response);
                     }else{
                         error= "No se realizó la compra...";
                         request.getSession().setAttribute("myError", error);
+                        request.getSession().setAttribute("myTitulo", titulo);
                         request.getRequestDispatcher("error.jsp").forward(request, response);
                     }
 
@@ -89,6 +91,7 @@ public class compraPaso3 extends HttpServlet {
                 }else{
                     error= "Mala suerte el stock cambió...";
                     request.getSession().setAttribute("myError", error);
+                    request.getSession().setAttribute("myTitulo", titulo);
                     request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
 
