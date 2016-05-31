@@ -36,53 +36,67 @@ public class compraPaso3 extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        //Titulo
+        String titulo = "Ingresar Compra";
+        
         // Variables
         compraDTO compra = (compraDTO) request.getSession().getAttribute("compra");
-        String rut = (String) request.getParameter("txtRut");
+        String rut = (String) request.getParameter("txtRut").trim();
         
         String error = "";
         String exito = "";
         
-        clienteDAO cDAO = new clienteDAO();
-        clienteDTO clienteDTO = cDAO.read(rut);
-        
-        if (clienteDTO == null) {
-            error= "Cliente no encotrado";
+        if (rut.equals("") || rut==null) {
+            error= "No ingresaste el rut...";
             request.getSession().setAttribute("myError", error);
+            request.getSession().setAttribute("myTitulo", titulo);
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }else{
-            //Ahora si último paso
-            
-            productoDAO proDAO = new productoDAO();
-            productoDTO pordBuscarStock = proDAO.read(compra.getCod_prod());
-            
-            if ( pordBuscarStock.getStock() - compra.getCantidad() >= 0 ) {
-                
-                pordBuscarStock.setStock(pordBuscarStock.getStock() - compra.getCantidad());
-                
-                proDAO.modificar(pordBuscarStock);
-                
-                
-                compraDAO compritaDAO = new compraDAO();
-                compraDTO compritaDTO = new compraDTO(compra.getFecha(), compra.getCantidad(), compra.getPrecio(), rut, compra.getCod_prod());
-                if (compritaDAO.insertar(compritaDTO)) {
-                    exito= "Se realizó la compra perfectamente!";
-                    request.getSession().setAttribute("myExito", exito);
-                    request.getRequestDispatcher("exito.jsp").forward(request, response);
+            clienteDAO cDAO = new clienteDAO();
+            clienteDTO clienteDTO = cDAO.read(rut);
+
+            if (clienteDTO == null) {
+                error= "Cliente no encotrado";
+                request.getSession().setAttribute("myError", error);
+                request.getSession().setAttribute("myTitulo", titulo);
+                request.getRequestDispatcher("error.jsp").forward(request, response);
+            }else{
+                //Ahora si último paso
+
+                productoDAO proDAO = new productoDAO();
+                productoDTO pordBuscarStock = proDAO.read(compra.getCod_prod());
+
+                if ( pordBuscarStock.getStock() - compra.getCantidad() >= 0 ) {
+
+                    pordBuscarStock.setStock(pordBuscarStock.getStock() - compra.getCantidad());
+
+                    proDAO.modificar(pordBuscarStock);
+
+
+                    compraDAO compritaDAO = new compraDAO();
+                    compraDTO compritaDTO = new compraDTO(compra.getFecha(), compra.getCantidad(), compra.getPrecio(), rut, compra.getCod_prod());
+                    if (compritaDAO.insertar(compritaDTO)) {
+                        exito= "Se realizó la compra perfectamente!";
+                        request.getSession().setAttribute("myExito", exito);
+                        request.getRequestDispatcher("exito.jsp").forward(request, response);
+                    }else{
+                        error= "No se realizó la compra...";
+                        request.getSession().setAttribute("myError", error);
+                        request.getRequestDispatcher("error.jsp").forward(request, response);
+                    }
+
+
                 }else{
-                    error= "No se realizó la compra...";
+                    error= "Mala suerte el stock cambió...";
                     request.getSession().setAttribute("myError", error);
                     request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
-                
-                
-            }else{
-                error= "Mala suerte el stock cambió...";
-                request.getSession().setAttribute("myError", error);
-                request.getRequestDispatcher("error.jsp").forward(request, response);
+
             }
-            
         }
+        
+        
+        
         
         
     }

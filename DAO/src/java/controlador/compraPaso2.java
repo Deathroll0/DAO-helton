@@ -33,6 +33,9 @@ public class compraPaso2 extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        //Titulo
+        String titulo = "Ingresar Compra";
+        
         //tirando los SKU
         
         String algo = (String) request.getParameter("radios");
@@ -59,6 +62,7 @@ public class compraPaso2 extends HttpServlet {
             if (cantidad.equals("")||cantidad==null) {
                 error= "Ingresa una cantidad para el producto...";
                 request.getSession().setAttribute("myError", error);
+                request.getSession().setAttribute("myTitulo", titulo);
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }
             
@@ -79,11 +83,13 @@ public class compraPaso2 extends HttpServlet {
                     
                     request.getSession().setAttribute("compra", comprita);
                     request.getSession().setAttribute("nomProd", pDTO.getNombre());
+                    request.getSession().setAttribute("myTitulo", titulo);
                     request.getRequestDispatcher("compraPaso2.jsp").forward(request, response);                    
                     
                 }else{
                     error= "Supera el Stock del producto...";
                     request.getSession().setAttribute("myError", error);
+                    request.getSession().setAttribute("myTitulo", titulo);
                     request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
                 
@@ -91,6 +97,7 @@ public class compraPaso2 extends HttpServlet {
             } catch (NumberFormatException e) {
                 error= "Deben ser cantidad númerica..";
                 request.getSession().setAttribute("myError", error);
+                request.getSession().setAttribute("myTitulo", titulo);
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }
             

@@ -33,7 +33,8 @@ public class compraPaso1 extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        //
+        //Titulo
+        String titulo = "Ingresar Compra";
         
         String error="";
             productoDAO dao=new productoDAO();
@@ -43,11 +44,13 @@ public class compraPaso1 extends HttpServlet {
             {
                 error= "No existen datos";
                 request.getSession().setAttribute("myError", error);
+                request.getSession().setAttribute("myTitulo", titulo);
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }
             else
             {
                 request.getSession().setAttribute("listaProductos", productos);
+                request.getSession().setAttribute("myTitulo", titulo);
                 request.getRequestDispatcher("compraPaso1.jsp").forward(request, response);
             }
         
