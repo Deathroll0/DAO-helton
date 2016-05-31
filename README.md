@@ -43,9 +43,6 @@ _____________________
 
 ##MySQL
 ```
-use mysql;
-drop database Sistema_Venta;
-
 create database Sistema_Venta;
 use Sistema_Venta;
 
@@ -89,7 +86,7 @@ INSERT INTO Producto VALUES("SKU010","PS Vita",10,120000);
 
 create table Compra #3
 (
-	Id int,
+	Id int NOT NULL AUTO_INCREMENT,
     Fecha varchar(20),
     Cantidad int,
     Precio int,
@@ -103,6 +100,7 @@ create table Compra #3
     constraint FK_Compra_REF_Producto
 		foreign key (Cod_Producto) references Producto(Cod_Producto)
 );
+
 
 #use mysql;
 #create user 'admin_Sis_Venta'@'localhost' identified by '123';
