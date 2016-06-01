@@ -4,14 +4,32 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Buscar</title>
+        <link href="CSS/stylesheets/bootstrap.min.css" rel="stylesheet"/>
     </head>
     <body>
+        <div class="container">
+            <div class="page-header">
+                <center><h1>Menu Cliente</h1></center>
+            </div>
+            <div class="row">
+                <div class="col-sm-8">
+                    <blockquote>
+                        Ingrese rut a buscar
+                    </blockquote>      
+                </div>
+                <div class="col-sm-5">
         <form action="buscarCliente.do" method="post" >
-            Ingrese rut a buscar<br>
-            Rut:<input type="text" name="txtRut"><br>
-            <input type="submit" value="Buscar"><br>
-            <a href="index.jsp"> Volver</a>
-            
+            <table class="table table-bordered table-responsive table-hover">
+                <tr>
+                    <td>Rut:</td>
+                    <td><input type="text" name="txtRut"></td>
+                </tr>
+            </table>
+            <input type="submit" value="Buscar" class="btn btn-success"><br>
+            <br><a href="index.jsp"> Volver</a>
+            </div>
         </form>
+                </div>
+            </div>
     </body>
 </html>

@@ -5,13 +5,24 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Eliminar</title>
+        <link href="CSS/stylesheets/bootstrap.min.css" rel="stylesheet"/>
     </head>
     <body>
-        <h1>Ingrese los datos para eliminar</h1>
+        <div class="container">
+            <div class="page-header">
+        <center><h1>Menu Cliente</h1></center>        
+            </div>
+            <blockquote>
+                Ingrese el rut del cliente que desea eliminar
+            </blockquote>
         <form action="eliminarCliente.do" method="post">
-            Rut: <input type="text" name="txtRut"><br>
-            <input type="submit" value="Eliminar"><br>
-            <a href="index.jsp"> Volver</a>       
+            <tr>
+                <td>Rut:</td>
+                <td><input type="text" name="txtRut"></td>
+            </tr><br><br>
+            <input type="submit" value="Eliminar" class="btn btn-success"><br>
+            <br><a href="index.jsp"> Volver</a>       
         </form>
-    </body>
+    </div>
+        </body>
 </html>
