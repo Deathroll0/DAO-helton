@@ -44,25 +44,35 @@ public class eliminarCompra extends HttpServlet {
         }
         else
         {
-            compraDAO dao=new compraDAO();
-            if (dao.eliminar(id)) 
-            {
+            //Bug Nº13.434.213 el id nuúmero
             
-                exito="Se ha eliminado la compra correctamente!";
-                request.getSession().setAttribute("myExito", exito);
-                request.getSession().setAttribute("myTitulo", titulo);
-                request.getRequestDispatcher("exito.jsp").forward(request, response);
-                
+                try{
+                    int idParseo = Integer.parseInt(id);
+
+                    compraDAO dao=new compraDAO();
+                    if (dao.eliminar(idParseo)) 
+                    {
+
+                        exito="Se ha eliminado la compra correctamente!";
+                        request.getSession().setAttribute("myExito", exito);
+                        request.getSession().setAttribute("myTitulo", titulo);
+                        request.getRequestDispatcher("exito.jsp").forward(request, response);
+
+                    }
+                    else
+                    {
+                        error = "No se encontró el ID que intentas eliminar..";
+                        request.getSession().setAttribute("myError", error);
+                        request.getSession().setAttribute("myTitulo", titulo);
+                        request.getRequestDispatcher("error.jsp").forward(request, response);
+                    }
+                }catch(NumberFormatException err){
+                    error = "El ID debe ser númerico...";
+                    request.getSession().setAttribute("myError", error);
+                    request.getSession().setAttribute("myTitulo", titulo);
+                    request.getRequestDispatcher("error.jsp").forward(request, response);
+                }
             }
-            else
-            {
-                error = "No se encontró el ID que intentas eliminar..";
-                request.getSession().setAttribute("myError", error);
-                request.getSession().setAttribute("myTitulo", titulo);
-                request.getRequestDispatcher("error.jsp").forward(request, response);
-            }
-            }
-        
         }
     }
 

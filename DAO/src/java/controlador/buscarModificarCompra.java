@@ -30,28 +30,45 @@ public class buscarModificarCompra extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            //Variables    
             String id =  request.getParameter("txtId").trim();
-        String error="";        
-        if(id==null || id.equals(""))
-        {
-            error= "No existen datos";
-            request.getSession().setAttribute("myError", error);
-            request.getRequestDispatcher("error.jsp").forward(request, response);
-        }
-        else
-        {
-                compraDAO dao=new compraDAO();
-                compraDTO co2= dao.read(id);
-                if(co2==null)
-                {
-                error= "No existen datos";
+            String titulo = "Modificar Compra";
+            String error="";            
+
+            if(id==null || id.equals(""))
+            {
+                error= "Campos vacíos...";
                 request.getSession().setAttribute("myError", error);
+                request.getSession().setAttribute("myTitulo", titulo);
                 request.getRequestDispatcher("error.jsp").forward(request, response);
-                }
-                else
+            }
+            else
+            {
+                // Bug Id se debe parsear a entero o si no pasa soplao' xD
+
+                try
                 {
-                request.getSession().setAttribute("myModificarCo", co2);
-                request.getRequestDispatcher("modificarCompra.jsp").forward(request, response);
+                    int idParseao = Integer.parseInt(id);
+
+                    compraDAO dao=new compraDAO();
+                    compraDTO co2= dao.read(idParseao);
+                    if(co2==null)
+                    {
+                        error= "No se encontró el ID de compra ingresado..";
+                        request.getSession().setAttribute("myError", error);
+                        request.getSession().setAttribute("myTitulo", titulo);
+                        request.getRequestDispatcher("error.jsp").forward(request, response);
+                    }
+                    else
+                    {
+                        request.getSession().setAttribute("myModificarCo", co2);
+                        request.getRequestDispatcher("modificarCompra.jsp").forward(request, response);
+                    }
+                }catch(NumberFormatException err){
+                    error= "El ID debe ser númerico..";
+                    request.getSession().setAttribute("myError", error);
+                    request.getSession().setAttribute("myTitulo", titulo);
+                    request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
             }
         }

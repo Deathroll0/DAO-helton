@@ -21,18 +21,23 @@
         <blockquote>
             Para eliminar una compra digita el id de la compra y luego presiona "Eliminar"
         </blockquote>
-        
         <div class="col-sm-4">
             <form action="eliminarCompra.do" method="post">
-                <table class="table table-bordered table-striped">
-                    <tr>
-                        <th>ID de compra</th>
-                    </tr>
-                    <tr>
-                        <td><input type="text" name="txtId" size="15"></td> <br /><br />
-                        <td><input type="submit" value="Eliminar" class="btn btn-danger" /></td>
-                    </tr>
+                <!-- prueba-->
+                <table class="table table-bordered table-striped table-responsive">
+                    <thead>
+                        <tr>
+                            <th>ID de compra</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" name="txtId" size="15"></td>
+                            <td><input type="submit" value="Eliminar" class="btn btn-danger" /></td>
+                        </tr>
+                    </tbody>
                 </table>
+<!--                <input type="submit" value="Eliminar" class="btn btn-danger" />-->
             </form>    
         </div>
         
