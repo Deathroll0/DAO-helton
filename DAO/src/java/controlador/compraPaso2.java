@@ -9,7 +9,8 @@ import dao.productoDAO;
 import dto.compraDTO;
 import dto.productoDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +36,9 @@ public class compraPaso2 extends HttpServlet {
         
         //Titulo
         String titulo = "Ingresar Compra";
+        
+        //Obtener Fecha
+        String fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
         
         //tirando los SKU
         
@@ -83,9 +87,10 @@ public class compraPaso2 extends HttpServlet {
                     
                     // ID - fecha - cantidad - Precio - rut - Cod_Producto
                     
-                    String[] compra = {"001","30-may-2016",""+cant,""+(pDTO.getPrecio() * cant),"SKU" };
+//                    String[] compra = {"001",fecha,""+cant,""+(pDTO.getPrecio() * cant),"SKU" };
                     //compraDTO comprita = new compraDTO(1, "30-may-2016", cant, (cant*pDTO.getPrecio()), "x", SKU);
-                    compraDTO comprita = new compraDTO("30-may-2016", cant, (cant*pDTO.getPrecio()), "x", SKU);
+                        
+                    compraDTO comprita = new compraDTO(fecha, cant, (cant*pDTO.getPrecio()), "x", SKU);
                     
                     
                     request.getSession().setAttribute("compra", comprita);

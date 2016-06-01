@@ -25,7 +25,6 @@
 <!--    Division principal-->
     <div class="col-sm-8">
         <blockquote>
-            Compras : PASO 2 <br />
             Confirma tu compra ingresando tu rut y luego presiona "Comprar"
         </blockquote>
         
