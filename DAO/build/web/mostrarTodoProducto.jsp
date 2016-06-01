@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@page import="java.util.List"%>
 <%@page import="dto.productoDTO"%>
@@ -8,31 +9,40 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Mostrar todos los productos</title>
+        <link href="CSS/stylesheets/bootstrap.min.css" rel="stylesheet"/>
     </head>
     <body>
-         <%
-          List<productoDTO> productos =  (List<productoDTO>)request.getSession().getAttribute("myListP");
-         %>        
-         
-             <table border="1">
-            <tr>
-                <td>Codigo</td>
-                <td>Nombre</td>
-                <td>Stock</td>
-                <td>Precio</td>
-            </tr>
-            <%
-                for(int i=0; i<productos.size(); i++)
-                {
-                    out.println("<tr>");
-                        out.println("<td>" + productos.get(i).getCod_Producto() + "</td>");
-                        out.println("<td>" + productos.get(i).getNombre()+ "</td>");
-                        out.println("<td>" + productos.get(i).getStock()+ "</td>");
-                        out.println("<td>" + productos.get(i).getPrecio()+ "</td>");
-                    out.println("</tr>");
-                }
-            %>
-            <br><a href="index.jsp"> Volver</a>
-             </table>
+        <div class="container">
+            <div class="page-header">
+                <center><h1>Menu Producto</h1></center>
+            </div>
+            <div class="row">
+                <div class="col-sm-8">
+                    <blockquote>
+                    Todos los Productos
+                    </blockquote>
+                </div>
+                
+                <div class="col-sm-6">
+                    
+        <table class="table table-bordered table-responsive table-hover">
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Stock</th>
+                    <th>Precio</th>
+       <c:forEach var="p" items="${sessionScope.myListP}">
+            <tr><td>${p.Cod_Producto}</td>
+            <td>${p.Nombre}</td>
+            <td>${p.Stock}</td>
+            <td>${p.Precio}</td></tr>      
+        </c:forEach>
+                    
+        </table>
+                      
+                </div>
+                    
+        </div>
+        </div>
+
     </body>
 </html>

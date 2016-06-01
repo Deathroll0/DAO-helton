@@ -7,12 +7,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Modificar</title>
-<<<<<<< HEAD
         <link href="CSS/stylesheets/bootstrap.min.css" rel="stylesheet"/>
-=======
-        
-        
->>>>>>> 2f341c6a7c36a103b79d463c707b1eee40a1379d
     </head>
     <body>
         <div class="container"> 

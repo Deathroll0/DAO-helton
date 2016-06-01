@@ -23,7 +23,7 @@
                 </div>
                 
                 <div class="col-sm-6">
-                    <center>
+                    
                 <table class="table table-bordered table-responsive table-hover">
                     <th>Rut</th>
                     <th>Nombre</th>
@@ -34,7 +34,6 @@
             <td>${c.edad}</td></tr>
     </c:forEach>
         </table>
-                        </center>
                 </div>
                     
         </div>
