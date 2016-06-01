@@ -33,10 +33,13 @@ public class eliminarCompra extends HttpServlet {
         String error = "";
         String exito=""; 
         
+        String titulo = "Eliminar Compra";
+        
         if(id.equals("") || id==null)
         {      
-            error="campo vacio";
+            error="Ingresaste el campo vacío...";
             request.getSession().setAttribute("myError", error);
+            request.getSession().setAttribute("myTitulo", titulo);
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
         else
@@ -45,15 +48,17 @@ public class eliminarCompra extends HttpServlet {
             if (dao.eliminar(id)) 
             {
             
-                exito="Se ha eliminado el cliente correctamente";
+                exito="Se ha eliminado la compra correctamente!";
                 request.getSession().setAttribute("myExito", exito);
+                request.getSession().setAttribute("myTitulo", titulo);
                 request.getRequestDispatcher("exito.jsp").forward(request, response);
                 
             }
             else
             {
-                error = "Error en la eliminación de datos";
+                error = "No se encontró el ID que intentas eliminar..";
                 request.getSession().setAttribute("myError", error);
+                request.getSession().setAttribute("myTitulo", titulo);
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }
             }
