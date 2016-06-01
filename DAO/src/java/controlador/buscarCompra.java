@@ -32,10 +32,11 @@ public class buscarCompra extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
         String id =  request.getParameter("txtId").trim();
         String error="";
-        
+        String titulo="Buscar Compra";
         if(id==null || id.equals(""))
         {
             error= "No existen datos";
+            request.getSession().setAttribute("myTitulo", titulo);
             request.getSession().setAttribute("myError", error);
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
@@ -46,6 +47,7 @@ public class buscarCompra extends HttpServlet {
             if(co2==null)
                 {
                 error= "Rut Inexistente";
+                request.getSession().setAttribute("myTitulo", titulo);
                 request.getSession().setAttribute("myError", error);
                 request.getRequestDispatcher("error.jsp").forward(request, response);
                 }

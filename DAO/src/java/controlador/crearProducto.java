@@ -36,6 +36,7 @@ public class crearProducto extends HttpServlet {
         String precio=request.getParameter("txtPrecio").trim();
         String error="";
         String exito="";
+        String titulo="Crear Producto";
         
         try {
             int st=Integer.parseInt(stock);
@@ -44,6 +45,7 @@ public class crearProducto extends HttpServlet {
             if (codigo.equals("")||codigo==null||nombre.equals("")||nombre==null||stock.equals("")||stock==null || precio.equals("")||precio==null) 
             {
                 error="Campo vacio, debe llenar los 3 campos para poder continuar";
+                request.getSession().setAttribute("myTitulo", titulo);
                 request.getSession().setAttribute("myError", error);
                 request.getRequestDispatcher("error.jsp").forward(request, response);
                 
@@ -55,6 +57,7 @@ public class crearProducto extends HttpServlet {
                 if (dao.insertar(c)) 
                 {
                     exito="Se han insertado los datos correctamente";
+                    request.getSession().setAttribute("myTitulo", titulo);
                     request.getSession().setAttribute("myExito", exito);
                     request.getRequestDispatcher("exito.jsp").forward(request, response);
                 }
@@ -62,6 +65,7 @@ public class crearProducto extends HttpServlet {
                 {
                     error = "El producto ingresado ya existe";
                     request.getSession().setAttribute("myError", error);
+                    request.getSession().setAttribute("myTitulo", titulo);
                     request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
             }
@@ -69,6 +73,7 @@ public class crearProducto extends HttpServlet {
         } catch (Exception e) {
         }
             error="Debe ingresar numeros enteros en el campo cantidad";
+            request.getSession().setAttribute("myTitulo", titulo);
             request.getSession().setAttribute("myError", error);
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }

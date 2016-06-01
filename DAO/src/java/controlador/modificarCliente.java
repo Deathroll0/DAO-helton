@@ -36,12 +36,13 @@ public class modificarCliente extends HttpServlet {
         int ed=0;
         String error = "";
         String exito="";
-        
+        String titulo="Modificar Cliente";
         try{
         
             if(rut.equals("") || nombre.equals("") || edad.equals("") || rut==null || nombre==null || edad==null )
             {      
                 error="campo vacio";
+                request.getSession().setAttribute("myTitulo", titulo);
                 request.getSession().setAttribute("myError", error);
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }
@@ -54,6 +55,7 @@ public class modificarCliente extends HttpServlet {
                 if (dao.modificar(c)) 
                 {
                         exito="Se ha modificado correctamente";
+                        request.getSession().setAttribute("myTitulo", titulo);
                         request.getSession().setAttribute("myExito", exito);
                         request.getRequestDispatcher("exito.jsp").forward(request, response);
 
@@ -61,6 +63,7 @@ public class modificarCliente extends HttpServlet {
                 else
                 {
                         error = "Error en la modificación de datos";
+                        request.getSession().setAttribute("myTitulo", titulo);
                         request.getSession().setAttribute("myError", error);
                         request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
@@ -70,6 +73,7 @@ public class modificarCliente extends HttpServlet {
         catch(Exception e)
         {
             error = "Campo numerico invalido";
+            request.getSession().setAttribute("myTitulo", titulo);
             request.getSession().setAttribute("myError", error);
             request.getRequestDispatcher("error.jsp").forward(request, response);
             

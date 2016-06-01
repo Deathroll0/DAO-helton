@@ -32,12 +32,14 @@ public class mostrarTodoCliente extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String error="";
+            String titulo="Mostrar todos los clientes";
             clienteDAO dao=new clienteDAO();
             List<clienteDTO> clientes = dao.readAll();
             
             if(clientes.isEmpty())
             {
                 error= "No existen datos";
+                request.getSession().setAttribute("myTitulo", titulo);
                 request.getSession().setAttribute("myError", error);
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }

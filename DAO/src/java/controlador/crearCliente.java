@@ -34,12 +34,14 @@ public class crearCliente extends HttpServlet {
         String edad=request.getParameter("txtEdad").trim();
         String error="";
         String exito="";
+        String titulo="Crear Cliente";
         
         try {
             int ed=Integer.parseInt(edad);
             if (rut.equals("")||rut==null||nombre.equals("")||nombre==null||edad.equals("")||edad==null) 
             {
                error="Campo vacio, debe llenar los 3 campos para poder continuar";
+               request.getSession().setAttribute("myTitulo", titulo);
                 request.getSession().setAttribute("myError", error);
                 request.getRequestDispatcher("error.jsp").forward(request, response);
                 
@@ -51,12 +53,14 @@ public class crearCliente extends HttpServlet {
                 if (dao.insertar(c)) 
                 {
                     exito="Se han insertado los datos correctamente";
+                    request.getSession().setAttribute("myTitulo", titulo);
                     request.getSession().setAttribute("myExito", exito);
                     request.getRequestDispatcher("exito.jsp").forward(request, response);
                 }
                 else
                 {
                     error = "El cliente ingresado ya existe";
+                    request.getSession().setAttribute("myTitulo", titulo);
                     request.getSession().setAttribute("myError", error);
                     request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
@@ -67,6 +71,7 @@ public class crearCliente extends HttpServlet {
             
         } catch (Exception e) {
             error="Debe ingresar numeros enteros en el campo edad";
+            request.getSession().setAttribute("myTitulo", titulo);
             request.getSession().setAttribute("myError", error);
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }

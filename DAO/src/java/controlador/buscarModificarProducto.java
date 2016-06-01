@@ -32,10 +32,12 @@ public class buscarModificarProducto extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
         String codigo =  request.getParameter("txtCodigo").trim();
         String error="";        
+        String titulo="Modificar Producto";
         if(codigo==null || codigo.equals(""))
         {
             error= "Campo vacio";
             request.getSession().setAttribute("myError", error);
+            request.getSession().setAttribute("myTitulo", titulo);
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
         else
@@ -47,6 +49,7 @@ public class buscarModificarProducto extends HttpServlet {
                 {
                 error= "No existen datos";
                 request.getSession().setAttribute("myError", error);
+                request.getSession().setAttribute("myTitulo", titulo);
                 request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
                 else

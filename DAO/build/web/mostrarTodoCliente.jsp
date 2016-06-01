@@ -34,8 +34,7 @@
             <td>${c.edad}</td></tr>
     </c:forEach>
         </table>
-                </div>
-                    
+        </div>                    
         </div>
         </div>
     </body>

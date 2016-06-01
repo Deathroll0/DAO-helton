@@ -43,12 +43,6 @@
             <input type="submit" values="Modificar" class="btn btn-success"><br>
             <br>  <a href="index.jsp"> Volver</a>
         
-        
-        
-
-
-
-
         </form>
                 </div>
                 </div>

@@ -42,5 +42,8 @@
             <input type="submit" value="Crear" class="btn btn-success"/><br><br><br>
             <a href="index.jsp">Volver</a>
         </form>
+                    </div>
+                </div>
+        </div>
     </body>
 </html>

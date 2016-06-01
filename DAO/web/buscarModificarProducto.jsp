@@ -25,7 +25,9 @@
             </table>
             <input type="submit" value="Buscar" class="btn btn-success"><br>
             <br><a href="index.jsp"> Volver</a>
-            <br
+            <br>
         </form>
+            </div>
+        </div>
     </body>
 </html>

@@ -33,10 +33,12 @@ public class eliminarProducto extends HttpServlet {
         String codigo = request.getParameter("txtCodigo").trim();
         String error = "";
         String exito=""; 
+        String titulo="Eliminar Producto";
             
         if(codigo.equals("") || codigo==null)
         {      
             error="campo vacio";
+            request.getSession().setAttribute("myTitulo", titulo);
             request.getSession().setAttribute("myError", error);
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
@@ -47,6 +49,7 @@ public class eliminarProducto extends HttpServlet {
             {
             
                 exito="Se ha eliminado el producto correctamente";
+                request.getSession().setAttribute("myTitulo", titulo);
                 request.getSession().setAttribute("myExito", exito);
                 request.getRequestDispatcher("exito.jsp").forward(request, response);
                 
@@ -54,6 +57,7 @@ public class eliminarProducto extends HttpServlet {
             else
             {
                 error = "Error en la eliminación de datos";
+                request.getSession().setAttribute("myTitulo", titulo);
                 request.getSession().setAttribute("myError", error);
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }

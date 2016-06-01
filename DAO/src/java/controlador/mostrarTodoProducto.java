@@ -32,6 +32,7 @@ public class mostrarTodoProducto extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String error="";
+            String titulo="Mostrar todos los productos";
             productoDAO dao=new productoDAO();
             List<productoDTO> productos = dao.readAll();
             
@@ -39,6 +40,7 @@ public class mostrarTodoProducto extends HttpServlet {
             {
                 error= "No existen datos";
                 request.getSession().setAttribute("myError", error);
+                request.getSession().setAttribute("myTitulo", titulo);
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }
             else

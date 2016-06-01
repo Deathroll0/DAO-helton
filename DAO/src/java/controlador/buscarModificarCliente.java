@@ -32,9 +32,11 @@ public class buscarModificarCliente extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
         String rut =  request.getParameter("txtRut").trim();
         String error="";        
+        String titulo="Modificar Cliente";
         if(rut==null || rut.equals(""))
         {
             error= "No existen datos";
+            request.getSession().setAttribute("myTitulo", titulo);
             request.getSession().setAttribute("myError", error);
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
@@ -45,6 +47,7 @@ public class buscarModificarCliente extends HttpServlet {
                 if(c2==null)
                 {
                 error= "No existen datos";
+                request.getSession().setAttribute("myTitulo", titulo);
                 request.getSession().setAttribute("myError", error);
                 request.getRequestDispatcher("error.jsp").forward(request, response);
                 }

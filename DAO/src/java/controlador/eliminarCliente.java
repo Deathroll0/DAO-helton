@@ -33,11 +33,13 @@ public class eliminarCliente extends HttpServlet {
         String rut = request.getParameter("txtRut").trim(); 
         String error = "";
         String exito=""; 
+        String titulo="Eliminar Cliente";
         
         if(rut.equals("") || rut==null)
         {      
             error="campo vacio";
             request.getSession().setAttribute("myError", error);
+            request.getSession().setAttribute("myTitulo", titulo);
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
         else
@@ -47,6 +49,7 @@ public class eliminarCliente extends HttpServlet {
             {
             
                 exito="Se ha eliminado el cliente correctamente";
+                request.getSession().setAttribute("myTitulo", titulo);
                 request.getSession().setAttribute("myExito", exito);
                 request.getRequestDispatcher("exito.jsp").forward(request, response);
                 
@@ -54,6 +57,7 @@ public class eliminarCliente extends HttpServlet {
             else
             {
                 error = "Error en la eliminación de datos";
+                request.getSession().setAttribute("myTitulo", titulo);
                 request.getSession().setAttribute("myError", error);
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }

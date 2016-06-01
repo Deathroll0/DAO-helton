@@ -39,11 +39,12 @@ public class modificarProducto extends HttpServlet {
         int pre = 0;
         String error = "";
         String exito="";
-        
+        String titulo="Modificar Producto";
         try{
             if(codigo.equals("") || stock.equals("") || nombre.equals("") || nombre==null || codigo==null || stock==null || precio.equals("")|| precio==null)
             {      
                 error="campo vacio";
+                request.getSession().setAttribute("myTitulo", titulo);
                 request.getSession().setAttribute("myError", error);
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }
@@ -58,6 +59,7 @@ public class modificarProducto extends HttpServlet {
                 if (dao.modificar(p)) 
                 {
                         exito="Se ha modificado correctamente";
+                        request.getSession().setAttribute("myTitulo", titulo);
                         request.getSession().setAttribute("myExito", exito);
                         request.getRequestDispatcher("exito.jsp").forward(request, response);
 
@@ -65,6 +67,7 @@ public class modificarProducto extends HttpServlet {
                 else
                 {
                         error = "Error en la modificación de datos";
+                        request.getSession().setAttribute("myTitulo", titulo);
                         request.getSession().setAttribute("myError", error);
                         request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
@@ -74,6 +77,7 @@ public class modificarProducto extends HttpServlet {
         catch(Exception e)
         {
             error = "Campo numerico invalido";
+            request.getSession().setAttribute("myTitulo", titulo);
             request.getSession().setAttribute("myError", error);
             request.getRequestDispatcher("error.jsp").forward(request, response);
             
