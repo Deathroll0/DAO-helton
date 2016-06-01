@@ -16,7 +16,7 @@
     <body>
         <div class="container">
             <div class="page-header">
-                <center> <h1>Menú Principal</h1> </center>
+                <center> <h1>Modificar Compra</h1> </center>
             </div>
             
 <!--Página central-->
@@ -24,10 +24,49 @@
 <!--    Division principal-->
     <div class="col-sm-8">
         <blockquote>
-            Bienvenido al Sistemas de ventas! <br />
-            
+            Ahora puedes modificar solo los datos que te damos a continuación..
         </blockquote>
-        Para comenzar utiliza las herramientas del menú
+        
+        <div class="col-sm-10">
+            <table class="table table-responsive table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th><center>Id</center></th>
+                        <th><center>Fecha</center></th>
+                        <th><center>Cantidad</center></th>
+                        <th><center>Precio</center></th>
+                        <th><center>Rut</center></th>
+                        <th><center>Codigo Producto</center></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><center> <%=co.getId() %> </center></td>
+                        <td><center> <input type="text" name="txtFecha" value="<%=co.getFecha()%>" /> </center></td>
+                        <td><center> <input type="text" name="txtCantidad" value="<%=co.getCantidad()%>" size="5px" /> </center></td>
+                        <td><center> <input type="text" name="txtPrecio" value="<%=co.getPrecio()%>" /> </center></td>
+                        <td><center> <input type="text" name="txtRut" value="<%=co.getRut()%>" /> </center></td>
+                        <td><center> <input type="text" name="txtCodigo" value="<%=co.getCod_prod()%>" /> </center></td>
+                    </tr>
+                </tbody>
+                
+            </table>
+        </div>
+<!--    <body>
+        <h1>Modifique los datos</h1>
+        <form action="modificarCompra.do" method="post">  
+            
+            ID: <input type="text" name="txtId" value="<%out.print(co.getId());%>" readonly="readonly"> <br>
+            Fecha:<input type="text" name="txtFecha" value="<%out.print(co.getFecha());%>"><br>
+            Cantidad:<input type="text" name="txtCantidad" value="<%out.print(co.getCantidad());%>"><br>       
+            Precio:<input type="text" name="txtPrecio" value="<%out.print(co.getPrecio());%>"><br>       
+            Rut:<input type="text" name="txtRut" value="<%out.print(co.getRut());%>"><br>       
+            Codigo:<input type="text" name="txtCodigo" value="<%out.print(co.getCod_prod());%>"><br>       
+            <input type="submit" values="Modificar"><br>
+            <a href="index.jsp"> Volver</a>
+        </form>
+    </body>-->
+        
     </div>
 <!--    Division Menu-->
 <div class="col-sm-3 col-sm-offset-1">
@@ -66,21 +105,4 @@
         </footer>
     </center>
     </body>
-    
-    
-    
-<!--    <body>
-        <h1>Modifique los datos</h1>
-        <form action="modificarCompra.do" method="post">  
-            
-            ID: <input type="text" name="txtId" value="<%out.print(co.getId());%>" readonly="readonly"> <br>
-            Fecha:<input type="text" name="txtFecha" value="<%out.print(co.getFecha());%>"><br>
-            Cantidad:<input type="text" name="txtCantidad" value="<%out.print(co.getCantidad());%>"><br>       
-            Precio:<input type="text" name="txtPrecio" value="<%out.print(co.getPrecio());%>"><br>       
-            Rut:<input type="text" name="txtRut" value="<%out.print(co.getRut());%>"><br>       
-            Codigo:<input type="text" name="txtCodigo" value="<%out.print(co.getCod_prod());%>"><br>       
-            <input type="submit" values="Modificar"><br>
-            <a href="index.jsp"> Volver</a>
-        </form>
-    </body>-->
 </html>
