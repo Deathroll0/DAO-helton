@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@page import="java.util.List"%>
 <%@page import="dto.compraDTO"%>
@@ -10,9 +11,6 @@
     <link href="CSS/stylesheets/bootstrap.min.css" rel="stylesheet"/>
     </head>
     
-    <%
-        List<compraDTO> compras =  (List<compraDTO>)request.getSession().getAttribute("myListCo");
-    %>
     
     <body>
         <div class="container">
@@ -42,20 +40,19 @@
                     </tr>
                 </thead>
                 <tbody>
+                    
+                    <c:forEach var="lista" items="${sessionScope.myListCo}">
+                        <tr>
+                            <td><center> ${lista.id} </center></td>
+                            <td><center> ${lista.fecha} </center></td>
+                            <td><center> ${lista.cantidad} </center></td>
+                            <td><center> ${lista.precio} </center></td>
+                            <td><center> ${lista.rut} </center></td>
+                            <td><center> ${lista.cod_prod} </center></td>
+                        </tr>
 
-                        <%
-                            for(int i=0; i<compras.size(); i++)
-                            {
-                                out.println("<tr>");
-                                    out.println("<td><center>" + compras.get(i).getId() + "</center></td>");
-                                    out.println("<td><center>" + compras.get(i).getFecha()+ "</center></td>");
-                                    out.println("<td><center>" + compras.get(i).getCantidad()+ "</center></td>");
-                                    out.println("<td><center>" + compras.get(i).getPrecio()+ "</center></td>");
-                                    out.println("<td><center>" + compras.get(i).getRut()+ "</center></td>");
-                                    out.println("<td><center>" + compras.get(i).getCod_prod()+ "</center></td>");
-                                out.println("</tr>");
-                            }
-                        %>
+                    </c:forEach>
+                
                     
                 </tbody>
                 
