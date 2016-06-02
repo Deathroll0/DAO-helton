@@ -32,13 +32,16 @@ public class mostrarTodoCompra extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
            String error="";
+           String titulo = "Todas las Compras";
+           
             compraDAO dao=new compraDAO();
             List<compraDTO> compras = dao.readAll();
             
             if(compras.isEmpty())
             {
-                error= "No existen datos";
+                error= "Ups! no tenemos compras en nuestros registros!";
                 request.getSession().setAttribute("myError", error);
+                request.getSession().setAttribute("myTitulo", titulo);
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }
             else
