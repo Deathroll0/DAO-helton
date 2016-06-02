@@ -33,29 +33,44 @@ public class buscarCompra extends HttpServlet {
         String id =  request.getParameter("txtId").trim();
         String error="";
         String titulo="Buscar Compra";
+        
         if(id==null || id.equals(""))
         {
-            error= "No existen datos";
+            error= "Campos vacíos...";
             request.getSession().setAttribute("myTitulo", titulo);
             request.getSession().setAttribute("myError", error);
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
         else
         {
-            compraDAO dao=new compraDAO();
-            compraDTO co2=dao.read(id);
-            if(co2==null)
+            //Bug
+            try{
+                int id2 = Integer.parseInt(id);
+                
+                compraDAO dao=new compraDAO();
+                compraDTO co2=dao.read(id);
+                if(co2==null)
                 {
-                error= "Rut Inexistente";
-                request.getSession().setAttribute("myTitulo", titulo);
-                request.getSession().setAttribute("myError", error);
-                request.getRequestDispatcher("error.jsp").forward(request, response);
+                    error= "La compra buscada no se encontró en nuestros registros...";
+                    request.getSession().setAttribute("myTitulo", titulo);
+                    request.getSession().setAttribute("myError", error);
+                    request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
                 else
                 {
-                request.getSession().setAttribute("myBuscarCo", co2);
-                request.getRequestDispatcher("mostrarCompra.jsp").forward(request, response);
+                    request.getSession().setAttribute("myBuscarCo", co2);
+                    request.getRequestDispatcher("mostrarCompra.jsp").forward(request, response);
                 }
+            }catch(NumberFormatException err){
+                error= "El campo debe ser númerico...";
+                request.getSession().setAttribute("myTitulo", titulo);
+                request.getSession().setAttribute("myError", error);
+                request.getRequestDispatcher("error.jsp").forward(request, response);
+            }
+            
+            
+            
+            
         }
         }
     }

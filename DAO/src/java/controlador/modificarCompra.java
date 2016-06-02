@@ -38,47 +38,53 @@ public class modificarCompra extends HttpServlet {
         String codigo=request.getParameter("txtCodigo").trim();
         String error = "";
         String exito="";
+        String titulo = "Modificar Compra";
         
-        try{
-            int idn=Integer.parseInt(id);
-            int can=Integer.parseInt(cantidad);
-            int pre=Integer.parseInt(precio);
-        
-            if(id.equals("")||id==null||fecha.equals("")||fecha==null||cantidad.equals("")||cantidad==null||precio.equals("")||precio==null
+        if(id.equals("")||id==null||fecha.equals("")||fecha==null||cantidad.equals("")||cantidad==null||precio.equals("")||precio==null
                     ||precio.equals("")||precio==null||rut.equals("")||rut==null||codigo.equals("")||codigo==null) 
             {      
-                error="campo vacio";
+                error="Campos vacíos...";
                 request.getSession().setAttribute("myError", error);
+                request.getSession().setAttribute("myTitulo", titulo);
                 request.getRequestDispatcher("error.jsp").forward(request, response);
-            }
-            else
-            {
+            }else{
+            
+            try{
+                int idn=Integer.parseInt(id);
+                int can=Integer.parseInt(cantidad);
+                int pre=Integer.parseInt(precio);
+                
                 compraDAO dao=new compraDAO();
                 compraDTO co=new compraDTO(idn, fecha, can, pre, rut, codigo);
                 
                 if (dao.modificar(co)) 
                 {
-                        exito="Se ha modificado correctamente";
+                        exito="Se ha modificado correctamente!";
                         request.getSession().setAttribute("myExito", exito);
+                        request.getSession().setAttribute("myTitulo", titulo);
                         request.getRequestDispatcher("exito.jsp").forward(request, response);
 
                 }
                 else
                 {
-                        error = "Error en la modificación de datos";
+                        error = "Ups! ha ocurrido un problema, chequea bien tus datos para modificar...";
                         request.getSession().setAttribute("myError", error);
+                        request.getSession().setAttribute("myTitulo", titulo);
                         request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
             }
-        }
 
-        catch(Exception e)
-        {
-            error = "Campo numerico invalido";
-            request.getSession().setAttribute("myError", error);
-            request.getRequestDispatcher("error.jsp").forward(request, response);
-            
+            catch(Exception e)
+            {
+                error = "Campo númerico inválido...";
+                request.getSession().setAttribute("myError", error);
+                request.getSession().setAttribute("myTitulo", titulo);
+                request.getRequestDispatcher("error.jsp").forward(request, response);
+            }
         }
+        
+        
+        
            
         
         }

@@ -28,6 +28,7 @@
         </blockquote>
         
         <div class="col-sm-10">
+            <form action="modificarCompra.do" method="post">  
             <table class="table table-responsive table-bordered table-striped">
                 <thead>
                     <tr>
@@ -41,31 +42,21 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><center> <%=co.getId() %> </center></td>
+                        <td><center> <input type="text" name="txtId" value="<%=co.getId()%>" size="5px" readonly="readonly" /> </center></td>
                         <td><center> <input type="text" name="txtFecha" value="<%=co.getFecha()%>" /> </center></td>
                         <td><center> <input type="text" name="txtCantidad" value="<%=co.getCantidad()%>" size="5px" /> </center></td>
                         <td><center> <input type="text" name="txtPrecio" value="<%=co.getPrecio()%>" /> </center></td>
                         <td><center> <input type="text" name="txtRut" value="<%=co.getRut()%>" /> </center></td>
                         <td><center> <input type="text" name="txtCodigo" value="<%=co.getCod_prod()%>" /> </center></td>
+    
                     </tr>
                 </tbody>
                 
             </table>
+                    <input type="submit" value="Modificar" class="btn btn-warning" />
+            </form>        
         </div>
-<!--    <body>
-        <h1>Modifique los datos</h1>
-        <form action="modificarCompra.do" method="post">  
-            
-            ID: <input type="text" name="txtId" value="<%out.print(co.getId());%>" readonly="readonly"> <br>
-            Fecha:<input type="text" name="txtFecha" value="<%out.print(co.getFecha());%>"><br>
-            Cantidad:<input type="text" name="txtCantidad" value="<%out.print(co.getCantidad());%>"><br>       
-            Precio:<input type="text" name="txtPrecio" value="<%out.print(co.getPrecio());%>"><br>       
-            Rut:<input type="text" name="txtRut" value="<%out.print(co.getRut());%>"><br>       
-            Codigo:<input type="text" name="txtCodigo" value="<%out.print(co.getCod_prod());%>"><br>       
-            <input type="submit" values="Modificar"><br>
-            <a href="index.jsp"> Volver</a>
-        </form>
-    </body>-->
+
         
     </div>
 <!--    Division Menu-->
