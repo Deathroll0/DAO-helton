@@ -108,7 +108,7 @@ public class clienteDAO implements interfaces<clienteDTO>{
             res=ps.executeQuery();
             
             while (res.next()) {
-                c= new clienteDTO(res.getString(1), res.getString(1), res.getInt(3));
+                c= new clienteDTO(res.getString(1), res.getString(2), res.getInt(3));
             }
             return c;
         } catch (SQLException ex) {

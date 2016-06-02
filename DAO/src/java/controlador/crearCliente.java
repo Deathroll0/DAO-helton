@@ -36,44 +36,50 @@ public class crearCliente extends HttpServlet {
         String exito="";
         String titulo="Crear Cliente";
         
-        try {
-            int ed=Integer.parseInt(edad);
-            if (rut.equals("")||rut==null||nombre.equals("")||nombre==null||edad.equals("")||edad==null) 
-            {
-               error="Campo vacio, debe llenar los 3 campos para poder continuar";
-               request.getSession().setAttribute("myTitulo", titulo);
-                request.getSession().setAttribute("myError", error);
-                request.getRequestDispatcher("error.jsp").forward(request, response);
-                
-            } 
-            else
-            {
-                 clienteDAO dao=new clienteDAO();
-                 clienteDTO c=new clienteDTO(rut, nombre, ed);
-                if (dao.insertar(c)) 
-                {
-                    exito="Se han insertado los datos correctamente";
-                    request.getSession().setAttribute("myTitulo", titulo);
-                    request.getSession().setAttribute("myExito", exito);
-                    request.getRequestDispatcher("exito.jsp").forward(request, response);
-                }
-                else
-                {
-                    error = "El cliente ingresado ya existe";
+        if (rut.equals("")||rut==null||nombre.equals("")||nombre==null||edad.equals("")||edad==null) 
+        {
+           error="Campos vacíos... debe llenar los 3 campos para poder continuar.";
+           request.getSession().setAttribute("myTitulo", titulo);
+           request.getSession().setAttribute("myError", error);
+           request.getRequestDispatcher("error.jsp").forward(request, response);
+
+        }else{
+            try {
+                    int ed=Integer.parseInt(edad);
+                    
+                    if (ed <= 0) {
+                    error = "La edad está incorrecta...";
                     request.getSession().setAttribute("myTitulo", titulo);
                     request.getSession().setAttribute("myError", error);
                     request.getRequestDispatcher("error.jsp").forward(request, response);
-                }
-                
-                
-                
+                }else{
+                        clienteDAO dao=new clienteDAO();
+                    clienteDTO c=new clienteDTO(rut, nombre, ed);
+                    
+                    if (dao.insertar(c)) 
+                    {
+                        exito="Se han insertado los datos correctamente";
+                        request.getSession().setAttribute("myTitulo", titulo);
+                        request.getSession().setAttribute("myExito", exito);
+                        request.getRequestDispatcher("exito.jsp").forward(request, response);
+                    }
+                    else
+                    {
+                        error = "El cliente ingresado ya existe";
+                        request.getSession().setAttribute("myTitulo", titulo);
+                        request.getSession().setAttribute("myError", error);
+                        request.getRequestDispatcher("error.jsp").forward(request, response);
+                    }
+                    }
+                    
+                    
+                    
+                }catch(NumberFormatException err){
+                    error="Debe ingresar números enteros en el campo edad";
+                    request.getSession().setAttribute("myTitulo", titulo);
+                    request.getSession().setAttribute("myError", error);
+                    request.getRequestDispatcher("error.jsp").forward(request, response);
             }
-            
-        } catch (Exception e) {
-            error="Debe ingresar numeros enteros en el campo edad";
-            request.getSession().setAttribute("myTitulo", titulo);
-            request.getSession().setAttribute("myError", error);
-            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
             
    

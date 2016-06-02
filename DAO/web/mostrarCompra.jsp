@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Buscar Compra</title>
     <link href="CSS/stylesheets/bootstrap.min.css" rel="stylesheet"/>
     </head>
     

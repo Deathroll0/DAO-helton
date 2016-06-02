@@ -3,33 +3,76 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Buscar</title>
+        <title>Buscar Cliente</title>
         <link href="CSS/stylesheets/bootstrap.min.css" rel="stylesheet"/>
     </head>
     <body>
         <div class="container">
             <div class="page-header">
-                <center><h1>Menu Cliente</h1></center>
+                <center> <h1>Buscar Cliente</h1> </center>
             </div>
-            <div class="row">
-                <div class="col-sm-8">
-                    <blockquote>
-                        Ingrese rut a buscar
-                    </blockquote>      
-                </div>
-                <div class="col-sm-5">
-        <form action="buscarCliente.do" method="post" >
-            <table class="table table-bordered table-responsive table-hover">
-                <tr>
-                    <td>Rut:</td>
-                    <td><input type="text" name="txtRut"></td>
-                </tr>
-            </table>
-            <input type="submit" value="Buscar" class="btn btn-success"><br>
-            <br><a href="index.jsp"> Volver</a>
-            </div>
-        </form>
-                </div>
-            </div>
+            
+<!--Página central-->
+<div class="row">
+<!--    Division principal-->
+    <div class="col-sm-8">
+        <blockquote>
+            Para comenzar la búsqueda ingresa el <b>Rut</b> del cliente y luego presiona buscar.
+        </blockquote>
+        
+        <div class="col-sm-4">
+            <form action="buscarCliente.do" method="post" >
+                <table class="table table-bordered table-striped table-responsive">
+                    <thead>
+                        <tr>
+                            <th>RUT de Cliente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" name="txtRut" size="15"></td>
+                            <td><input type="submit" value="Buscar" class="btn btn-info" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>    
+        </div>
+    </div>
+<!--    Division Menu-->
+<div class="col-sm-3 col-sm-offset-1">
+    <div class="well">
+        <h4>COMPRAS <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></h4>
+        <a href="compraPaso1.do"> Crear</a><br />
+        <a href="eliminarCompra.jsp"> Eliminar</a><br />
+        <a href="buscarModificarCompra.jsp"> Modificar</a><br />
+        <a href="buscarCompra.jsp"> Buscar</a><br />
+        <a href="mostrarTodoCompra.do"> Mostrar Todo</a><br />
+    </div>
+    <div class="well ">
+        <h4>CLIENTES <span class="glyphicon glyphicon-user" aria-hidden="true"></span></h4>
+        <a href="crearCliente.jsp"> Crear</a><br />
+        <a href="eliminarCliente.jsp"> Eliminar</a><br />
+        <a href="buscarModificarCliente.jsp"> Modificar</a><br />
+        <a href="buscarCliente.jsp"> Buscar</a><br />
+        <a href="mostrarTodoCliente.do"> Mostrar Todo</a><br />
+    </div>
+    <div class="well">
+        <h4>PRODUCTOS <span class="glyphicon glyphicon-barcode" aria-hidden="true"></span></h4>
+        <a href="crearProducto.jsp"> Crear</a><br />
+        <a href="eliminarProducto.jsp"> Eliminar</a><br />
+        <a href="buscarModificarProducto.jsp"> Modificar</a><br />
+        <a href="buscarProducto.jsp"> Buscar</a><br />
+        <a href="mostrarTodoProducto.do"> Mostrar Todo</a><br />
+    </div>
+</div>
+    
+</div>
+        
+        </div>
+    <center>
+        <footer>
+            Creado por : Ricardo Palma - Juan B. Yáñez
+        </footer>
+    </center>
     </body>
 </html>

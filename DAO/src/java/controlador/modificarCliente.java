@@ -49,24 +49,35 @@ public class modificarCliente extends HttpServlet {
             else
             {
                 ed=Integer.parseInt(edad);
-                clienteDAO dao=new clienteDAO();
-                clienteDTO c=new clienteDTO(rut, nombre, ed);
-                
-                if (dao.modificar(c)) 
-                {
-                        exito="Se ha modificado correctamente";
-                        request.getSession().setAttribute("myTitulo", titulo);
-                        request.getSession().setAttribute("myExito", exito);
-                        request.getRequestDispatcher("exito.jsp").forward(request, response);
+                        
+                if (ed <= 0) {
+                    error="La edad está incorrecta...";
+                    request.getSession().setAttribute("myTitulo", titulo);
+                    request.getSession().setAttribute("myError", error);
+                    request.getRequestDispatcher("error.jsp").forward(request, response);
+                }else{
+                    clienteDAO dao=new clienteDAO();
+                    clienteDTO c=new clienteDTO(rut, nombre, ed);
 
+                    if (dao.modificar(c)) 
+                    {
+                            exito="Se ha modificado correctamente";
+                            request.getSession().setAttribute("myTitulo", titulo);
+                            request.getSession().setAttribute("myExito", exito);
+                            request.getRequestDispatcher("exito.jsp").forward(request, response);
+
+                    }
+                    else
+                    {
+                            error = "Error en la modificación de datos";
+                            request.getSession().setAttribute("myTitulo", titulo);
+                            request.getSession().setAttribute("myError", error);
+                            request.getRequestDispatcher("error.jsp").forward(request, response);
+                    }
                 }
-                else
-                {
-                        error = "Error en la modificación de datos";
-                        request.getSession().setAttribute("myTitulo", titulo);
-                        request.getSession().setAttribute("myError", error);
-                        request.getRequestDispatcher("error.jsp").forward(request, response);
-                }
+        
+                        
+                
             }
         }
 

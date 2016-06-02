@@ -37,7 +37,7 @@ public class eliminarCliente extends HttpServlet {
         
         if(rut.equals("") || rut==null)
         {      
-            error="campo vacio";
+            error="Campos vacíos...";
             request.getSession().setAttribute("myError", error);
             request.getSession().setAttribute("myTitulo", titulo);
             request.getRequestDispatcher("error.jsp").forward(request, response);

@@ -15,7 +15,7 @@
     <body>
         <div class="container">
             <div class="page-header">
-                <center> <h1>Buscar Compra</h1> </center>
+                <center> <h1>Buscar Compras</h1> </center>
             </div>
             
 <!--Página central-->
